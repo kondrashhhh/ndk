@@ -1,0 +1,29 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.btn {
+    width: calcVW(40, 1600);
+    height: calcVW(40, 1600);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #F0F0F0;
+    transition: transform 0.3s ease-out;
+
+    @include vp--1600 {
+        width: 40px;
+        height: 40px;
+    }
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    svg {
+        transform: rotate(180deg);
+        stroke: #000000;
+    }
+}

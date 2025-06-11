@@ -1,0 +1,46 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.box {
+    position: relative;
+    width: 100%;
+    border-radius: calcVW(50, 1600);
+    background-color: #FFFFFF;
+    overflow: hidden;
+
+    @include vp--1600 {
+        border-radius: 50px;
+	}
+}
+
+.size-m {
+    padding: calcVW(50, 1600);
+
+    @include vp--1600 {
+        padding: 50px;
+	}
+
+    @include vp--1024 {
+        padding: 50px 25px;
+	}
+
+    @include vp--680 {
+        padding: 50px 15px;
+	}
+}
+
+.size-l {
+    padding: calcVW(100, 1600);
+
+    @include vp--1600 {
+        padding: 100px;
+	}
+
+    @include vp--1024 {
+        padding: 50px 25px;
+	}
+
+    @include vp--680 {
+        padding: 50px 15px;
+	}
+}

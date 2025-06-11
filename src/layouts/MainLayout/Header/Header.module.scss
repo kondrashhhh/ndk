@@ -1,0 +1,70 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 60px;
+    background-color: transparent;
+    z-index: 2;
+
+    @include vp--1024 {
+        padding: 20px 30px;
+    }
+
+    @include vp--680 {
+        padding: 20px 20px;
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.line {
+    height: 39px;
+    width: 1px;
+    background-color: #ffffff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logoSpan {
+    font-family: $font-f-montserrat;
+    font-weight: 500;
+    font-size: 32px;
+    text-transform: uppercase;
+    color: #fff;
+
+    @include vp--1024 {
+        font-size: 16px;
+    }
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.phone {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.mobilePhone {
+    width: 19px;
+    height: 19px;
+}
+
+.mobilePhone:before {
+    content: none;
+}

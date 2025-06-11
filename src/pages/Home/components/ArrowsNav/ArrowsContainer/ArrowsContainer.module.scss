@@ -1,0 +1,11 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.container {
+    display: flex;
+    column-gap: calcVW(5, 1600);
+
+    @include vp--1600 {
+        column-gap: 5px;
+    }
+}
