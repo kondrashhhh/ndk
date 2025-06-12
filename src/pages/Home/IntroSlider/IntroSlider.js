@@ -34,7 +34,6 @@ export const IntroSlider = () => {
                 <h3 className={styles.title}>МНОГОУРОВНЕВАЯ ПОДСВЕТКА</h3>
             </div>
             <div className={styles.sliders}>
-                {/* <div className={styles.textSlider}> */}
                     <Swiper
                         className={styles.textSlider}
                         modules={[Navigation]}
@@ -57,13 +56,11 @@ export const IntroSlider = () => {
                                 </SwiperSlide>
                             ))
                         }
-                                            <ArrowsContainer className={styles.buttons}>
-                        <ArrowButtonLeft ref={prevButton} />
-                        <ArrowButtonRight ref={nextButton} />
-                    </ArrowsContainer>
+                        <ArrowsContainer className={styles.buttons}>
+                            <ArrowButtonLeft ref={prevButton} />
+                            <ArrowButtonRight ref={nextButton} />
+                        </ArrowsContainer>
                     </Swiper>
-                {/* </div> */}
-                {/* <div className={styles.imageSlider}> */}
                     <Swiper
                         className={cn(styles.swiper, styles.imageSlider)}
                         modules={[Navigation]}
@@ -76,14 +73,16 @@ export const IntroSlider = () => {
                         simulateTouch={false}
                         allowTouchMove={false}
                         speed={600}
-                        spaceBetween={50}
+                        spaceBetween={5}
                         slidesPerView={1.25}
                         breakpoints={{
                             1400: {
                                 slidesPerView: 1.5,
+                                spaceBetween: 50,
                             },
-                            1024: {
+                            680: {
                                 slidesPerView: 1.1,
+                                spaceBetween: 50,
                             }
                         }}
                     >
@@ -97,7 +96,6 @@ export const IntroSlider = () => {
                             ))
                         }
                     </Swiper>
-                {/* </div> */}
             </div>
         </Box>
         <div className={styles.borderLeft}></div>
