@@ -1,0 +1,15 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.wrapper {
+    background-color: rgb(240, 240, 240);
+    padding: 0 70px;
+    overflow-x: hidden;
+    @include vp--1024 {
+        padding: 0 30px;
+    }
+
+    @include vp--680 {
+        padding: 0 15px;
+    }
+}

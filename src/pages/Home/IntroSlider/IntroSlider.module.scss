@@ -5,20 +5,21 @@
     background-color: rgb(240, 240, 240);
     padding: 0 70px;
     overflow-x: hidden;
-    height: 100vh;
+    height: 75vh;
     @include vp--1024 {
         padding: 0 30px;
     }
 
     @include vp--680 {
         padding: 0 15px;
+        height: 50vh;
     }
 }
 
 .box {
     position: absolute;
     overflow: visible;
-    bottom: 300px;
+    top: 1055px;
     padding-left: 0;
     width: 92%;
 
@@ -30,9 +31,9 @@
         padding-top: 30px;
     }
 
-    @include vp--680 {
-        bottom: 450px;
-    }
+    // @include vp--680 {
+    //     bottom: 250px;
+    // }
 }
 
 .titleWrapper {
@@ -156,9 +157,9 @@
 .borderLeft {
     width: 70px;
     position: absolute;
-    bottom: 360px;
+    bottom: 0;
     left: 0;
-    height: 518px;
+    height: 75vh;
     z-index: 10;
     background-color: rgb(240, 240, 240);
 
@@ -168,5 +169,6 @@
 
     @include vp--680 {
         width: 15px;
+        height: 50vh;
     }
 }
