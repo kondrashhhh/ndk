@@ -4,36 +4,40 @@
 .wrapper {
     background-color: rgb(240, 240, 240);
     padding: 0 70px;
-    overflow-x: hidden;
-    height: 75vh;
+    overflow: visible;
+    position: relative;
+    min-height: 650px;
+
     @include vp--1024 {
+        min-height: 800px;
         padding: 0 30px;
     }
 
     @include vp--680 {
+        min-height: 510px;
         padding: 0 15px;
-        height: 50vh;
     }
 }
 
 .box {
     position: absolute;
-    overflow: visible;
-    top: 1055px;
+    inset: 0;
+    width: calc(100% - 140px);
+    top: -150px;
+    left: 70px;
     padding-left: 0;
-    width: 92%;
-
-    @include vp--1600 {
-        width: 90%;
-    }
+    overflow: visible;
 
     @include vp--1024 {
+        width: calc(100% - 60px);
+        left: 30px;
         padding-top: 30px;
     }
 
-    // @include vp--680 {
-    //     bottom: 250px;
-    // }
+    @include vp--680 {
+        width: calc(100% - 30px);
+        left: 15px;
+    }
 }
 
 .titleWrapper {
@@ -117,7 +121,6 @@
     min-width: 0;
     background-color: #ffffff;
     z-index: 5;
-    padding-top: 210px;
     padding-left: 50px;
     padding-right: 50px;
 
@@ -159,16 +162,30 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 75vh;
+    min-height: 650px;
     z-index: 10;
     background-color: rgb(240, 240, 240);
 
     @include vp--1024 {
         width: 30px;
+        min-height: 725px;
     }
 
     @include vp--680 {
         width: 15px;
-        height: 50vh;
+        min-height: 450px;
     }
+}
+
+.arrows {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;   
+}
+
+.counter {
+    font-weight: 400;
+    font-size: 16px;
 }

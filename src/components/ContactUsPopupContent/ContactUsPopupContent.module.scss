@@ -1,0 +1,81 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    color: #111217;
+    font-weight: 300;
+}
+
+.content {
+    width: calcVW(800);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: calcVW(30);
+    padding: calcVW(50) calcVW(20);
+    text-align: center;
+
+    @include vp--1280 {
+        row-gap: 30px;
+        padding: 50px 20px;
+    }
+
+    @include vp--680 {
+        width: 100%;
+        row-gap: 0;
+    }
+}
+
+.close {
+	width: calcVW(35);
+	height: calcVW(35);
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: calcVW(30);
+
+    @include vp--1280 {
+		width: 35px;
+		height: 35px;
+        margin-bottom: 30px;
+	}
+}
+
+.title {
+    font-size: calcVW(26);
+    line-height: 110%;
+
+    @include vp--1280 {
+        font-size: 26px;
+    }
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: calcVW(20);
+    font-size: calcVW(20);
+    padding: calcVW(30) 0; 
+
+    @include vp--1280 {
+        row-gap: 20px;
+        font-size: 20px;
+        padding: 30px 0;
+    }
+}
+
+.address {
+    font-size: calcVW(16);
+
+    @include vp--1280 {
+        font-size: 16px;
+    }
+}

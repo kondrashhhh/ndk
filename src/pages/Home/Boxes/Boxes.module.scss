@@ -1,0 +1,75 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.wrapper {
+    background-color: rgb(240, 240, 240);
+    padding: 15px 70px 25px;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    @include vp--1024 {
+        padding: 30px 30px 25px;
+        gap: 20px;
+    }
+
+    @include vp--680 {
+        padding: 30px 15px 25px;
+    }
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    flex: 1 1 20%;
+    transition: .2s ease-in;
+    padding-left: calcVW(30, 1600);
+
+    @include vp--1024 {
+        flex: 1 1 40%;
+        padding-left: calcVW(50, 1600);
+    }
+
+    @include vp--680 {
+        flex: 1 1 50%;
+        padding-left: calcVW(50, 1600);
+    }
+}
+
+.item:hover {
+    transform: scale(101%);
+}
+
+.absolute {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 100%;
+    text-transform: uppercase;
+
+    @include vp--1600 {
+        font-size: 30px;
+    }
+
+    @include vp--1024 {
+        font-size: 40px;
+    }
+
+    @include vp--680 {
+        font-size: 25px;
+    }
+}
+
+.subtitle {
+    font-weight: 300;
+    font-size: 20px;
+    text-transform: none;
+}

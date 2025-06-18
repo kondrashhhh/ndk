@@ -17,6 +17,8 @@ export const IntroSlider = () => {
   const swiperRef2 = useRef(null);
 
   const [navReady, setNavReady] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(1);
+  const [totalSlides, setTotalSlides] = useState(slides.length);
 
   useEffect(() => {
       if (prevButton.current && nextButton.current) {
@@ -56,10 +58,15 @@ export const IntroSlider = () => {
                                 </SwiperSlide>
                             ))
                         }
-                        <ArrowsContainer className={styles.buttons}>
-                            <ArrowButtonLeft ref={prevButton} />
-                            <ArrowButtonRight ref={nextButton} />
-                        </ArrowsContainer>
+                        <div className={styles.arrows}>
+                            <ArrowsContainer className={styles.buttons}>
+                                <ArrowButtonLeft ref={prevButton} />
+                                <ArrowButtonRight ref={nextButton} />
+                            </ArrowsContainer>
+                            <span className={styles.counter}>
+                                {currentSlide} / {totalSlides}
+                            </span>
+                        </div>
                     </Swiper>
                     <Swiper
                         className={cn(styles.swiper, styles.imageSlider)}
@@ -69,6 +76,11 @@ export const IntroSlider = () => {
                             prevEl: prevButton.current,
                             nextEl: nextButton.current,
                         } : false}
+                        onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
+                        onInit={(swiper) => {
+                            setTotalSlides(swiper.slides.length);
+                            setCurrentSlide(swiper.realIndex + 1);
+                        }}
                         followFinger={false}
                         simulateTouch={false}
                         allowTouchMove={false}
@@ -78,7 +90,7 @@ export const IntroSlider = () => {
                         breakpoints={{
                             1400: {
                                 slidesPerView: 1.5,
-                                spaceBetween: 50,
+                                spaceBetween: 51,
                             },
                             680: {
                                 slidesPerView: 1.1,

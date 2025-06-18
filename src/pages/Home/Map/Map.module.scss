@@ -1,0 +1,51 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.wrapper {
+    background-color: rgb(240, 240, 240);
+    padding: 10px 70px;
+    overflow-x: hidden;
+    @include vp--1024 {
+        padding: 10px 30px;
+    }
+
+    @include vp--680 {
+        padding: 10px 15px;
+    }
+}
+
+.box {
+    padding-left: 0;
+}
+
+.titleWrapper {
+    padding-left: 50px;
+
+    @include vp--1600 {
+        padding-left: 50px;
+	}
+
+    @include vp--1024 {
+        padding-left: 25px;
+        margin-bottom: 20px;
+	}
+
+    @include vp--680 {
+        padding-left: 15px;
+	}
+}
+
+.title {
+    font-size: 40px;
+    font-weight: 300;
+    text-transform: uppercase;
+    line-height: 100%;
+
+    @include vp--1024 {
+        text-align: center;
+    }
+
+    @include vp--680 {
+        font-size: 25px;
+    }
+}

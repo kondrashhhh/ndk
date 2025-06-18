@@ -1,0 +1,24 @@
+.button {
+    font-weight: 300;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 10px;
+    background-color: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 10px;
+    transition: .2s ease-in-out;
+}
+
+.button:hover {
+    border: 1px solid #DB8741;
+    color: #DB8741;
+}
+
+.button.activeTab {
+    background-color: #DB8741;
+    color: #FFFFFF;
+}
+
+.button.preLine {
+    white-space: pre-line;
+}

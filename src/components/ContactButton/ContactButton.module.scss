@@ -4,13 +4,15 @@
     font-weight: 400;
     letter-spacing: 0.5px;
     border-radius: 10px;
-    border: 2px solid #FFFFFF;
     text-transform: uppercase;
     transition: .2s ease-in-out;
+    white-space: nowrap;
+    z-index: 20;
 }
 
 .white {
     background-color: #ffffff;
+    border: 2px solid #FFFFFF;
     color: #000000;
 }
 
@@ -18,4 +20,15 @@
     background-color: transparent;
     transition: .5 ease-in-out;
     color: #FFFFFF;
+}
+
+.orange {
+    background-color: #DB8741;
+    border: 2px solid #DB8741;
+    color: #ffffff;
+}
+
+.orange:hover {
+    background-color: #EEEEEE;
+    color: #DB8741;
 }

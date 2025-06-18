@@ -3,13 +3,127 @@
 
 .wrapper {
     background-color: rgb(240, 240, 240);
-    padding: 0 70px;
+    padding: 10px 70px;
     overflow-x: hidden;
     @include vp--1024 {
-        padding: 0 30px;
+        padding: 10px 30px;
     }
 
     @include vp--680 {
-        padding: 0 15px;
+        padding: 10px 15px;
     }
+}
+
+.leftTree, .rightTree {
+    max-height: 635px;
+
+    @include vp--680 {
+        max-height: 515px;
+    }
+}
+
+.leftTree {
+    position: absolute;
+    top: -135px;
+    left: -200px;
+
+    @include vp--1024 {
+        left: -250px;
+    }
+}
+
+.rightTree {
+    position: absolute;
+    top: -170px;
+    right: -125px;
+
+    @include vp--680 {
+        top: -120px;
+        right: -230px;
+    }
+}
+
+.leftStone {
+    position: absolute;
+    bottom: -225px;
+    left: -500px;
+    max-height: 553px;
+    // height: 553px;
+    @include vp--1280 {
+        bottom: -190px;
+    }
+
+    @include vp--1024 {
+        left: -400px;
+        bottom: -140px;
+    }
+
+    @include vp--680 {
+        left: -175px;
+        bottom: 0;        
+    }
+}
+
+.rightStone {
+    position: absolute;
+    bottom: -100px;
+    right: -300px;
+    max-height: 485px;
+
+    @include vp--1280 {
+
+    }
+
+    @include vp--1024 {
+
+    }
+
+    @include vp--680 {
+        bottom: 25px;
+        right: -80px;
+    }
+}
+
+.grass {
+    position: absolute;
+    left: 50%;
+    bottom: -280px;
+    filter: blur(4px);
+    max-height: 495px;
+    transform: translate(-50%);
+    z-index: 10;
+
+    @include vp--1024 {
+        bottom: -200px;
+    }
+
+    @include vp--680 {
+        bottom: -120px;
+        max-width: 625px;
+    }
+}
+
+.text {
+    padding: 200px 0;
+    font-weight: 250;
+    font-size: 80px;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 75px;
+
+    @include vp--1280 {
+        font-size: 50px;
+        line-height: 50px;
+    }
+
+    @include vp--680 {
+        padding: 250px 0;
+        font-size: 30px;
+        line-height: 30px;
+    }
+}
+
+.greenText {
+    font-weight: 500;
+    color: #536D29;
 }
