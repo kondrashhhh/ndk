@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { Burger } from './Burger/Burger'
+import { BurgerMenu } from './BurgerMenu/BurgerMenu'
 import { ContactButton } from '@/components/ContactButton/ContactButton'
 import BigLogo from './logo.svg'
 import SmallLogo from './mobile_logo.svg'
@@ -44,7 +45,7 @@ export const Header = () => {
                              :
                     (
                         <>
-                            <ContactButton>Заказать звонок</ContactButton>
+                            <ContactButton background='white'>Заказать звонок</ContactButton>
                             <a className={styles.phone} href="tel:+78123097777">+7 812 309-77-77</a>
                         </>
                     )
@@ -53,6 +54,9 @@ export const Header = () => {
             <div className={styles.burger}>
                 <Burger isMenuOpen={isMobileMenuOpen} toggleMenu={toggleMobileMenu} />
             </div>
+        </div>
+        <div className={styles.burgerMenu}>
+            <BurgerMenu isMenuOpen={isMobileMenuOpen} />
         </div>
     </header>
   )

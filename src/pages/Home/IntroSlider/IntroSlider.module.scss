@@ -9,12 +9,12 @@
     min-height: 650px;
 
     @include vp--1024 {
-        min-height: 800px;
+        min-height: 870px;
         padding: 0 30px;
     }
 
     @include vp--680 {
-        min-height: 510px;
+        min-height: 600px;
         padding: 0 15px;
     }
 }
@@ -62,6 +62,7 @@
     font-size: 40px;
     font-weight: 300;
     text-transform: uppercase;
+    line-height: 110%;
 
     @include vp--1024 {
         font-size: 20px;

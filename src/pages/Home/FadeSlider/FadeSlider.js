@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, act } from 'react'
+import React, { useState, useRef } from 'react'
 import { useMediaQuery } from 'react-responsive';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { SliderTab } from './SliderTab/SliderTab';
@@ -14,80 +14,68 @@ export const FadeSlider = () => {
 
   const handleClickChange = (index) => {
     setActiveTab(index);
-    if (swiperRef.current && swiperRef2.current) {
+    if (swiperRef.current) {
       swiperRef.current.slideTo(index);
+    }
+    if (swiperRef2.current) {
       swiperRef2.current.slideTo(index);
     }
   };
 
   return (
     <div className={styles.wrapper}>
-        <Swiper
-            className={styles.textSlider}
-            onSwiper={(swiper) => { swiperRef.current = swiper; }}
-            followFinger={false}
-            simulateTouch={false}
-            allowTouchMove={false}
+      <Swiper
+        className={styles.textSlider}
+        onSwiper={(swiper) => { swiperRef.current = swiper; }}
+        followFinger={false}
+        simulateTouch={false}
+        allowTouchMove={false}
+        speed={600}
+        slidesPerView={1}
+      >
+        {tabsContent.map((item, index) => (
+          <SwiperSlide key={index} className={styles.slide}>
+            <img src={item.slide} alt={item.tab} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      
+      <div className={styles.tabs}>
+        {!isMobile ? (
+          tabsContent.map((item, index) => (
+            <SliderTab
+              key={index}
+              isActive={activeTab === index}
+              onClick={() => handleClickChange(index)}
+            >
+              {item.tab}
+            </SliderTab>
+          ))
+        ) : (
+          <Swiper
+            className={styles.tabSlider}
+            onSwiper={(swiper) => { swiperRef2.current = swiper; }}
             speed={600}
-            slidesPerView={1}
-        >
-            {
-                tabsContent.map((item, index) => (
-                    <SwiperSlide
-                        key={index}
-                        className={styles.slide}
-                    >
-                        <img src={item.slide} alt={item.tab} />
-                    </SwiperSlide>
-                ))
-            }
-        </Swiper>
-        <div className={styles.tabs}>
-            {
-                !isMobile ? 
-                    tabsContent.map((item, index) => (
-                        <SliderTab
-                            key={index}
-                            isActive={activeTab === index}
-                            onClick={() => handleClickChange(index)}
-                        >
-                            {item.tab}
-                        </SliderTab>
-                    ))
-                         : (
-                        <Swiper
-                            className={styles.tabSlider}
-                            onSwiper={(swiper) => { swiperRef2.current = swiper; }}
-                            speed={600}
-                            spaceBetween={5}
-                            slidesPerView={1.35}
-                            breakpoints={{
-                                530: {
-                                    slidesPerView: 2
-                                },
-                                405: {
-                                    slidesPerView: 1.5
-                                }
-                            }}
-                        >
-                            {
-                                tabsContent.map((item, index) => (
-                                    <SwiperSlide>
-                                        <SliderTab
-                                            key={index}
-                                            isActive={activeTab === index}
-                                            onClick={() => handleClickChange(index)}
-                                        >
-                                            {item.tab}
-                                        </SliderTab>
-                                    </SwiperSlide>
-                                ))
-                            }
-                        </Swiper>
-                )
-                    
-            }
-        </div>
+            spaceBetween={5}
+            slidesPerView={1.35}
+            breakpoints={{
+              530: { slidesPerView: 2 },
+              405: { slidesPerView: 1.5 }
+            }}
+          >
+            {tabsContent.map((item, index) => (
+              <SwiperSlide key={index}>
+                <SliderTab
+                  isActive={activeTab === index}
+                  onClick={() => handleClickChange(index)}
+                >
+                  {item.tab}
+                </SliderTab>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
+      </div>
     </div>
   )
 }

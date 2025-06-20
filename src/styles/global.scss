@@ -59,6 +59,15 @@ body {
 	}
 }
 
+.body-no-scroll {
+    overflow: hidden;
+    
+    @include vp--680 {
+        position: fixed;
+        width: 100%;
+    }
+}
+
 p,
 li {
 	margin-bottom: calcVW(8);

@@ -7,8 +7,12 @@ export const Boxes = () => {
   return (
     <div className={styles.wrapper}>
         {
-            items.map(item => (
-                <Box size='m' className={styles.item}>
+            items.map((item, index) => (
+                <Box
+                 size='m' 
+                 className={styles.item} 
+                 key={index}
+                >
                     <div className={styles.absolute}>
                         <h3 className={styles.title}>{item.title}</h3>
                         <span className={styles.subtitle}>{item.subtitle}</span>

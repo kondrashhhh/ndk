@@ -15,6 +15,7 @@ export const IntroSlider = () => {
 
   const swiperRef1 = useRef(null);
   const swiperRef2 = useRef(null);
+  const swiperRef3 = useRef(null);
 
   const [navReady, setNavReady] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(1);
@@ -33,7 +34,27 @@ export const IntroSlider = () => {
     <div className={styles.wrapper}>
         <Box size='m' className={styles.box}>
             <div className={styles.titleWrapper}>
-                <h3 className={styles.title}>МНОГОУРОВНЕВАЯ ПОДСВЕТКА</h3>
+                <Swiper
+                    modules={[Navigation]}
+                    onSwiper={(swiper) => { swiperRef3.current = swiper; }}
+                    navigation={navReady ? {
+                        prevEl: prevButton.current,
+                        nextEl: nextButton.current,
+                    } : false}
+                    followFinger={false}
+                    simulateTouch={false}
+                    allowTouchMove={false}
+                    speed={600}
+                    slidesPerView={1}
+                >
+                    {
+                        slides.map((slide, index) => (
+                            <SwiperSlide key={index}>
+                                <h3 className={styles.title}>{slide.title}</h3>
+                            </SwiperSlide>
+                        ))
+                    }
+                </Swiper>
             </div>
             <div className={styles.sliders}>
                     <Swiper

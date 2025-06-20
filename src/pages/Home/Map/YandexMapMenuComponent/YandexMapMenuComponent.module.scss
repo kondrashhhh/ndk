@@ -1,0 +1,50 @@
+.block {
+    z-index: 1;
+    position: absolute;
+    min-height: 28vw;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 100%;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 17px;
+    color: #033368;
+}
+
+.dd {
+    border: 1px solid #e5e5e5;
+    position: relative;
+    width: 380px;
+    padding: 15px 10px 15px 30px;
+    box-shadow: 0 0.2em 5px rgba(122, 122, 122, 0.2);
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 543px;
+    opacity: 1;
+    pointer-events: auto;
+    position: absolute;
+    top: 100%;
+    padding: 7px 25px 0;
+    margin-top: 8px;
+    left: -1px;
+    right: -1px;
+    font-weight: 500;
+    line-height: 22px;
+    overflow: hidden;
+    overflow-y: scroll;
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-top: none;
+    list-style: none;
+}
+
+

@@ -1,5 +1,8 @@
 import React from 'react'
 import { Box } from '../components/Box/Box'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
 import styles from './AutoSlider.module.scss'
 
 export const AutoSlider = () => {
@@ -14,10 +17,30 @@ export const AutoSlider = () => {
               <img src='/home/autoslider/stone.png' alt="Right Stone" className={styles.rightStone}/>
             </div>
             <div className={styles.text}>
-              <p>
-                беспрецедентное <br/>
-                <span className={styles.greenText}>озеленение</span>
-              </p>
+              <Swiper
+                speed={600}
+                slidesPerView={1}
+                autoplay={{
+                  delay: 5000,
+                  disableOnInteraction: false,
+                }}
+                modules={[Autoplay]}
+                allowTouchMove={true}
+                loop={true}
+              >
+                <SwiperSlide>
+                  <p>
+                    беспрецедентное <br/>
+                    <span className={styles.greenText}>озеленение</span>
+                  </p>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <p>
+                    беспрецедентное <br/>
+                    <span className={styles.greenText}>озеленение</span>
+                  </p>
+                </SwiperSlide>
+              </Swiper>
             </div>
         </Box>
     </div>

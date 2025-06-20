@@ -2,12 +2,19 @@
 @import '@/styles/mixins.scss';
 
 .header {
+    position: relative;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: absolute;
     top: 0;
     width: 100%;
     padding: 20px 60px;
     background-color: transparent;
-    z-index: 2;
+    z-index: 11;
 
     @include vp--1024 {
         padding: 20px 30px;
@@ -16,12 +23,6 @@
     @include vp--680 {
         padding: 20px 20px;
     }
-}
-
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .line {

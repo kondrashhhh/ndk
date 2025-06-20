@@ -1,0 +1,58 @@
+.item {
+    position: relative;
+    margin-bottom: 0;
+}
+
+.itemWrap {
+    gap: 50px;
+    justify-content: start;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox {
+    width: 15px;
+    height: 15px;
+    filter: grayscale(1);
+    opacity: .6;
+}
+
+.categoryCheckbox {
+    margin-top: 4px;
+}
+
+.sublist {
+    margin-top: 15px;
+    list-style: none;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    padding: 0;
+}
+
+.between {
+    justify-content: space-between;
+}
+
+.subItemWrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.image {
+    padding-top: 5px;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+.sublistLabel {
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}

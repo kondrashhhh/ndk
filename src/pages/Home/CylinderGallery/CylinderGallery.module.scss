@@ -1,0 +1,20 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.cylinder {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    z-index: 10;
+    height: 40vw;
+    width: 40%;
+    overflow: hidden;
+
+    @include vp--680 {
+        position: static;
+        transform: none;
+        height: 95vw;
+        width: 100%;
+    }
+}

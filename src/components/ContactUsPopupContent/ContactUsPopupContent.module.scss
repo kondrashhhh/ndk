@@ -7,75 +7,94 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff;
-    color: #111217;
+    background-image: url(/form.png);
+    background-size: cover;
     font-weight: 300;
 }
 
 .content {
-    width: calcVW(800);
+    position: relative;
+    max-width: 600px;
+    width: 510px!important;
     display: flex;
+    gap: 35px;
     flex-direction: column;
-    align-items: center;
-    row-gap: calcVW(30);
-    padding: calcVW(50) calcVW(20);
-    text-align: center;
-
-    @include vp--1280 {
-        row-gap: 30px;
-        padding: 50px 20px;
-    }
-
-    @include vp--680 {
-        width: 100%;
-        row-gap: 0;
-    }
+    padding: 40px!important;
 }
 
 .close {
-	width: calcVW(35);
-	height: calcVW(35);
+    position: absolute;
+    top: 40px;
+    right: 25px;
+	width: 20px;
+	height: 20px;
     background: none;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: calcVW(30);
-
-    @include vp--1280 {
-		width: 35px;
-		height: 35px;
-        margin-bottom: 30px;
-	}
 }
 
 .title {
-    font-size: calcVW(26);
+    font-size: 24px;
+    font-weight: 700;
     line-height: 110%;
-
-    @include vp--1280 {
-        font-size: 26px;
-    }
 }
 
-.contacts {
+.form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    row-gap: calcVW(20);
-    font-size: calcVW(20);
-    padding: calcVW(30) 0; 
-
-    @include vp--1280 {
-        row-gap: 20px;
-        font-size: 20px;
-        padding: 30px 0;
-    }
+    gap: 5px;
 }
 
-.address {
-    font-size: calcVW(16);
+.input {
+    width: 100%;
+    height: 57px;
+    border-radius: 6px;
+    padding: 20px 10px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #ABADC5;
+    -webkit-text-fill-color: #ABADC5;
+    border: 1px solid #F0F0F0;
+    outline: 0;
+}
 
-    @include vp--1280 {
-        font-size: 16px;
-    }
+.policy {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: start;
+    gap: 7px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 100%;
+    color: #777990;
+    -webkit-text-fill-color: #777990;
+}
+
+.policyInput {
+    margin-top: 2px;
+    accent-color:#777990;
+}
+.submitButton {
+    background-color: #DA552F;
+    width: 100%;
+    height: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 15px 10px;
+    border-radius: 12px;
+    color: #FFFFFF;
+}
+
+.policyLink {
+    padding: 0 5px;
+    text-decoration: underline;
+}
+
+.bottom {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
 }

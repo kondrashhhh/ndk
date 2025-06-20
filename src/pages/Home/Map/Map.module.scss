@@ -3,23 +3,26 @@
 
 .wrapper {
     background-color: rgb(240, 240, 240);
-    padding: 10px 70px;
+    padding: 10px 70px 20px;
     overflow-x: hidden;
     @include vp--1024 {
-        padding: 10px 30px;
+        padding: 10px 30px 20px;
     }
 
     @include vp--680 {
-        padding: 10px 15px;
+        padding: 10px 15px 20px;
     }
 }
 
 .box {
     padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
 }
 
 .titleWrapper {
     padding-left: 50px;
+    margin-bottom: 50px;
 
     @include vp--1600 {
         padding-left: 50px;

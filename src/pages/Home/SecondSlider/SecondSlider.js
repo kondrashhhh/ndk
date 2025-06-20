@@ -65,8 +65,8 @@ export const SecondSlider = () => {
                     slidesPerView={1}
                 >
                 {
-                    activePhotos.map(item => (
-                        <SwiperSlide className={styles.slide}>
+                    activePhotos.map((item, index) => (
+                        <SwiperSlide className={styles.slide} key={index}>
                             <img 
                               src={item.photo}
                               alt={areaContent[activeTab].title}

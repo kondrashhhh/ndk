@@ -1,0 +1,141 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.wrapper {
+    background-color: rgb(240, 240, 240);
+    padding: 100px 70px 10px;
+    overflow: hidden;
+    @include vp--1024 {
+        padding: 50px 30px 10px;
+    }
+
+    @include vp--680 {
+        padding: 50px 15px 10px;
+    }
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    @include vp--680 {
+        flex-direction: column;
+    }
+}
+
+.firstColumn {
+    height: 34vw;
+    width: 35%;
+
+    @include vp--680 {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+	}
+}
+
+.secondColumn {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+    align-items: end;
+    padding: calcVW(50, 1600);
+    padding-left: 0;
+
+    @include vp--1600 {
+        padding: 50px;
+        gap: 40px;
+	}
+
+    @include vp--1280 {
+        padding: 100px 50px;
+	}
+
+    @include vp--1024 {
+        padding: 50px 25px;
+	}
+
+    @include vp--680 {
+        padding: 50px 15px;
+        width: 100%;
+        gap: 15px;
+        align-items: center;
+	}
+}
+
+.box {
+    padding: 0;
+    overflow: visible;
+    max-height: 100%;
+}
+
+.topTitle, .bottomTitle {
+    text-align: end;
+
+    @include vp--680 {
+        text-align: center;
+    }
+}
+
+.title {
+    font-weight: 500;
+    font-size: 70px;
+    text-transform: uppercase;
+    line-height: 100%;
+
+    @include vp--1600 {
+        font-size: 50px;
+    }
+
+    @include vp--1280 {
+        font-size: 40px;
+    }
+
+    @include vp--680 {
+        font-size: 30px;
+    }
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    text-align: end;
+    gap: 40px;
+
+    @include vp--680 {
+        text-align: center;
+    }
+}
+
+.contactSpan {
+    font-weight: 300;
+    font-size: 18px;
+    text-transform: uppercase;
+
+    @include vp--680 {
+        font-size: 14px;
+    }
+}
+
+.subtitle {
+    font-weight: 250;
+    font-size: 70px;
+    text-transform: uppercase;
+    line-height: 100%;
+
+    @include vp--1600 {
+        font-size: 50px;
+    }
+
+    @include vp--1280 {
+        font-size: 40px;
+    }
+
+    @include vp--680 {
+        line-height: 150%;
+        font-size: 30px;
+    }
+}

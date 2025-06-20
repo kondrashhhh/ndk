@@ -1,4 +1,6 @@
 .button {
+    display: flex;
+    align-items: center;
     padding: 20px 23px;
     font-size: 14px;
     font-weight: 400;
@@ -16,6 +18,10 @@
     color: #000000;
 }
 
+.white:hover {
+    border: 2px solid #FFFFFF;
+}
+
 .button:hover {
     background-color: transparent;
     transition: .5 ease-in-out;
@@ -31,4 +37,19 @@
 .orange:hover {
     background-color: #EEEEEE;
     color: #DB8741;
+}
+
+.red {
+    background-color: #DA552F;
+    border: 2px solid #DA552F;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: none;
+    padding: 20px 10px;
+    height: 50px;
+}
+
+.red:hover {
+    color: #DA552F;
 }
