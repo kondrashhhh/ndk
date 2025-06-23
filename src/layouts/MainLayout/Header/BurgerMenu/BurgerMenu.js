@@ -72,7 +72,10 @@ export const BurgerMenu = ({ isMenuOpen }) => {
                 key={index}
                 className={styles.item}
               >
-                <a href={navItem.url}>
+                <a
+                 href={navItem.url}
+                 className={styles.url}
+                >
                   {navItem.title}
                 </a>
               </motion.li>

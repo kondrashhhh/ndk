@@ -11,6 +11,8 @@ function CylinderWithGaps({ radius = 2.25, height = 6 }) {
   const [currentRotation, setCurrentRotation] = useState(0)
   const [touchStart, setTouchStart] = useState(null)
   const [isMobile, setIsMobile] = useState(false)
+  const [autoRotate, setAutoRotate] = useState(true)
+  const autoRotateSpeed = 0.005
   
   const photos = [
     '/home/fade_slider/slide1.png',
@@ -26,10 +28,11 @@ function CylinderWithGaps({ radius = 2.25, height = 6 }) {
   const gapSize = 0.15
   const tiltAngle = Math.PI / 50
 
-  // Определяем мобильное устройство
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 680)
+      const mobile = window.innerWidth <= 680
+      setIsMobile(mobile)
+      setAutoRotate(mobile)
     }
     
     checkMobile()
@@ -37,24 +40,23 @@ function CylinderWithGaps({ radius = 2.25, height = 6 }) {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  // Обработчик скролла для десктопа
   const handleWheel = useCallback((e) => {
     if (!isMobile) {
       setTargetRotation(prev => prev + e.deltaY * 0.002)
     }
   }, [isMobile])
 
-  // Обработчики для свайпа на мобильных
   const handleTouchStart = useCallback((e) => {
     if (isMobile) {
       setTouchStart(e.touches[0].clientX)
+      setAutoRotate(false) 
     }
   }, [isMobile])
 
   const handleTouchMove = useCallback((e) => {
     if (isMobile && touchStart !== null) {
       const touchEnd = e.touches[0].clientX
-      const difference = touchStart - touchEnd
+      const difference = touchEnd - touchStart
       setTargetRotation(prev => prev + difference * 0.01)
       setTouchStart(touchEnd)
     }
@@ -62,7 +64,10 @@ function CylinderWithGaps({ radius = 2.25, height = 6 }) {
 
   const handleTouchEnd = useCallback(() => {
     setTouchStart(null)
-  }, [])
+    if (isMobile) {
+      setTimeout(() => setAutoRotate(true), 3000)
+    }
+  }, [isMobile])
 
   useEffect(() => {
     const element = document.querySelector(`.${styles.cylinder}`)
@@ -85,6 +90,10 @@ function CylinderWithGaps({ radius = 2.25, height = 6 }) {
 
   useFrame(() => {
     if (groupRef.current) {
+      if (isMobile && autoRotate) {
+        setTargetRotation(prev => prev + autoRotateSpeed)
+      }
+      
       setCurrentRotation(prev => prev + (targetRotation - prev) * 0.1)
       groupRef.current.rotation.y = currentRotation
     }
@@ -130,7 +139,7 @@ export default function CylinderGallery() {
   return (
     <div 
       className={styles.cylinder}
-      style={{ touchAction: 'none' }} // Отключаем стандартное поведение свайпа
+      style={{ touchAction: 'none' }} 
     >
       <Canvas camera={{ position: [0, 2, 10], fov: 50 }}>
         <ambientLight intensity={0.8} />
