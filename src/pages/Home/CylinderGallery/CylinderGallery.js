@@ -1,7 +1,7 @@
 'use client'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import styles from './CylinderGallery.module.scss'
 import * as THREE from 'three'
 
@@ -9,6 +9,8 @@ function CylinderWithGaps({ radius = 2.25, height = 6 }) {
   const groupRef = useRef()
   const [targetRotation, setTargetRotation] = useState(0)
   const [currentRotation, setCurrentRotation] = useState(0)
+  const [touchStart, setTouchStart] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
   
   const photos = [
     '/home/fade_slider/slide1.png',
@@ -24,15 +26,62 @@ function CylinderWithGaps({ radius = 2.25, height = 6 }) {
   const gapSize = 0.15
   const tiltAngle = Math.PI / 50
 
-  // Обработчик скролла
+  // Определяем мобильное устройство
   useEffect(() => {
-    const handleWheel = (e) => {
-      setTargetRotation(prev => prev + e.deltaY * 0.002)
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 680)
     }
     
-    window.addEventListener('wheel', handleWheel)
-    return () => window.removeEventListener('wheel', handleWheel)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
+
+  // Обработчик скролла для десктопа
+  const handleWheel = useCallback((e) => {
+    if (!isMobile) {
+      setTargetRotation(prev => prev + e.deltaY * 0.002)
+    }
+  }, [isMobile])
+
+  // Обработчики для свайпа на мобильных
+  const handleTouchStart = useCallback((e) => {
+    if (isMobile) {
+      setTouchStart(e.touches[0].clientX)
+    }
+  }, [isMobile])
+
+  const handleTouchMove = useCallback((e) => {
+    if (isMobile && touchStart !== null) {
+      const touchEnd = e.touches[0].clientX
+      const difference = touchStart - touchEnd
+      setTargetRotation(prev => prev + difference * 0.01)
+      setTouchStart(touchEnd)
+    }
+  }, [isMobile, touchStart])
+
+  const handleTouchEnd = useCallback(() => {
+    setTouchStart(null)
+  }, [])
+
+  useEffect(() => {
+    const element = document.querySelector(`.${styles.cylinder}`)
+    
+    if (isMobile) {
+      element.addEventListener('touchstart', handleTouchStart)
+      element.addEventListener('touchmove', handleTouchMove)
+      element.addEventListener('touchend', handleTouchEnd)
+    } else {
+      window.addEventListener('wheel', handleWheel)
+    }
+    
+    return () => {
+      element.removeEventListener('touchstart', handleTouchStart)
+      element.removeEventListener('touchmove', handleTouchMove)
+      element.removeEventListener('touchend', handleTouchEnd)
+      window.removeEventListener('wheel', handleWheel)
+    }
+  }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd, isMobile])
 
   useFrame(() => {
     if (groupRef.current) {
@@ -81,6 +130,7 @@ export default function CylinderGallery() {
   return (
     <div 
       className={styles.cylinder}
+      style={{ touchAction: 'none' }} // Отключаем стандартное поведение свайпа
     >
       <Canvas camera={{ position: [0, 2, 10], fov: 50 }}>
         <ambientLight intensity={0.8} />

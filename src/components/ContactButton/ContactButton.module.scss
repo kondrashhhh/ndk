@@ -16,6 +16,7 @@
     background-color: #ffffff;
     border: 2px solid #FFFFFF;
     color: #000000;
+    -webkit-text-fill-color: #000000;
 }
 
 .white:hover {
@@ -26,23 +27,27 @@
     background-color: transparent;
     transition: .5 ease-in-out;
     color: #FFFFFF;
+    -webkit-text-fill-color: #FFFFFF;
 }
 
 .orange {
     background-color: #DB8741;
     border: 2px solid #DB8741;
     color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
 }
 
 .orange:hover {
     background-color: #EEEEEE;
     color: #DB8741;
+    -webkit-text-fill-color: #DB8741;
 }
 
 .red {
     background-color: #DA552F;
     border: 2px solid #DA552F;
     color: #FFFFFF;
+    -webkit-text-fill-color: #FFFFFF;
     font-weight: 600;
     font-size: 14px;
     text-transform: none;
@@ -52,4 +57,5 @@
 
 .red:hover {
     color: #DA552F;
+    -webkit-text-fill-color: #DB8741;
 }

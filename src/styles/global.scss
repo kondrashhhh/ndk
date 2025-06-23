@@ -11,6 +11,7 @@ button,
 a {
 	position: relative;
     font-family: $font-f-montserrat;
+	-webkit-text-fill-color: #000000;
     cursor: pointer;
 	&::before {
 		content: '';
