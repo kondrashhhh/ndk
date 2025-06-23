@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { YMaps, Map, Placemark, Rectangle } from 'react-yandex-maps';
+import { YMaps, Map, Placemark, Rectangle } from '@pbe/react-yandex-maps';
 import { YandexMapMenuComponent } from '../YandexMapMenuComponent/YandexMapMenuComponent';
 import { menuContent } from '../YandexMapMenuComponent/menuContent';
 import { mapPoints } from './markers';
