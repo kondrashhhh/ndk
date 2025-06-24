@@ -9,13 +9,15 @@ export const YandexMapComponent = () => {
   const [mapInstance, setMapInstance] = useState(null);
   const [features, setFeatures] = useState([]);
   const [objects, setObjects] = useState([]);
+  const [currentZoom, setCurrentZoom] = useState(13);
   const mapRef = useRef(null);
 
   const centerMap = [59.80770292, 30.08451200];
   const zoomMap = 13;
+  const minZoom = 10;
+  const maxZoom = 18;
 
   useEffect(() => {
-
     const initialFeatures = menuContent.flatMap(category => 
       category.places.flatMap(place => {
         const pointData = mapPoints[place.id] || { coords: [centerMap], icon: place.icon };
@@ -56,25 +58,45 @@ export const YandexMapComponent = () => {
     setObjects(initialObjects);
   }, []);
 
-    const handlePlaceCheckboxChange = (placeId, isChecked) => {
+  const handlePlaceCheckboxChange = (placeId, isChecked) => {
     setFeatures(prevFeatures => 
-        prevFeatures.map(f => 
+      prevFeatures.map(f => 
         f.placeId === placeId ? { ...f, visible: isChecked } : f
-        )
+      )
     );
-    };
+  };
 
-    const handleCategoryCheckboxChange = (categoryId, isChecked) => {
+  const handleCategoryCheckboxChange = (categoryId, isChecked) => {
     const placeIds = menuContent
-        .find(c => c.id === categoryId)?.places
-        .map(p => p.id) || [];
+      .find(c => c.id === categoryId)?.places
+      .map(p => p.id) || [];
     
     setFeatures(prevFeatures => 
-        prevFeatures.map(f => 
+      prevFeatures.map(f => 
         placeIds.includes(f.placeId) ? { ...f, visible: isChecked } : f
-        )
+      )
     );
-    };
+  };
+
+  const handleZoomIn = () => {
+    if (mapInstance && currentZoom < maxZoom) {
+      const newZoom = currentZoom + 1;
+      mapInstance.setZoom(newZoom, { duration: 300 });
+      setCurrentZoom(newZoom);
+    }
+  };
+
+  const handleZoomOut = () => {
+    if (mapInstance && currentZoom > minZoom) {
+      const newZoom = currentZoom - 1;
+      mapInstance.setZoom(newZoom, { duration: 300 });
+      setCurrentZoom(newZoom);
+    }
+  };
+
+  const handleZoomChange = (e) => {
+    setCurrentZoom(e.get('newZoom'));
+  };
 
   return (
     <div className={styles.block}>
@@ -92,6 +114,7 @@ export const YandexMapComponent = () => {
               if (ref) {
                 setMapInstance(ref);
                 ref.behaviors.disable('scrollZoom');
+                ref.events.add('boundschange', handleZoomChange);
               }
             }}
             defaultState={{ center: centerMap, zoom: zoomMap }}
@@ -134,6 +157,23 @@ export const YandexMapComponent = () => {
             ))}
           </Map>
         </YMaps>
+
+        <div className={styles.zoomControls}>
+          <button 
+            className={styles.zoomButton} 
+            onClick={handleZoomIn}
+            disabled={currentZoom >= maxZoom}
+          >
+            +
+          </button>
+          <button 
+            className={styles.zoomButton} 
+            onClick={handleZoomOut}
+            disabled={currentZoom <= minZoom}
+          >
+            -
+          </button>
+        </div>
       </div>
     </div>
   );
