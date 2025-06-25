@@ -1,9 +1,12 @@
 import React, { useState, useRef } from 'react'
 import { useMediaQuery } from 'react-responsive';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectFade } from 'swiper/modules';
 import { SliderTab } from './SliderTab/SliderTab';
 import { tabsContent } from './content';
+import 'swiper/css/effect-fade';  
 import styles from './FadeSlider.module.scss'
+
 
 export const FadeSlider = () => { 
   const swiperRef = useRef(null);
@@ -28,6 +31,8 @@ export const FadeSlider = () => {
     <div className={styles.wrapper}>
       <Swiper
         className={styles.textSlider}
+        modules={[EffectFade]}
+        effect='fade'
         onSwiper={(swiper) => { swiperRef.current = swiper; }}
         followFinger={false}
         simulateTouch={false}
