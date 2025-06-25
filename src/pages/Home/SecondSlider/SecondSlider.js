@@ -38,6 +38,7 @@ export const SecondSlider = () => {
   useEffect(() => {
     swiperRef.current.slideTo(0);
     setCurrentSlide(1);
+    setTotalSlides(activePhotos.length);
   }, [activeTab])
   
   return (

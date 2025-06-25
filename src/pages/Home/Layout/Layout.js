@@ -37,6 +37,7 @@ export const Layout = () => {
     swiperRef.current.slideTo(0);
     setActiveArea(0);
     setCurrentSlide(1);
+    setTotalSlides(activePhotos.length);
   }, [activeTab])
   
   return (

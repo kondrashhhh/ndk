@@ -156,6 +156,11 @@
     }
 }
 
+.slide:last-child {
+    max-height: 1200px;
+    width: 100%;
+}
+
 .contact {
     position: absolute;
     bottom: 75px;

@@ -5,11 +5,11 @@ export const tabsContent = [
     },
     {
         tab: 'ПРЕМИАЛЬНЫЙ a-fitness КЛУБ С БАССЕЙНОМ',
-        slide: '/home/fade_slider/slide1.png',
+        slide: '/home/fade_slider/slide2.jpg',
     },
     {
         tab: 'СВОЯ ШКОЛА И ДВА ДЕТ.САДИКА ВО ДВОРЕ',
-        slide: '/home/fade_slider/slide1.png',
+        slide: '/home/fade_slider/slide3.jpg',
     },
     {
         tab: 'ОБЩЕСТВЕННЫЕ ПРОСТРАНСТВА ДЛЯ ОТДЫХА',
@@ -17,6 +17,6 @@ export const tabsContent = [
     },
     {
         tab: 'семейный квартал-парк',
-        slide: '/home/fade_slider/slide1.png',
+        slide: '/home/fade_slider/slide4.jpg',
     },
 ]

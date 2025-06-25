@@ -17,8 +17,10 @@ export const FadeSlider = () => {
     if (swiperRef.current) {
       swiperRef.current.slideTo(index);
     }
-    if (swiperRef2.current) {
-      swiperRef2.current.slideTo(index);
+    if (isMobile) {
+      if (swiperRef2.current) {
+        swiperRef2.current.slideTo(index);
+      }
     }
   };
 
@@ -35,7 +37,7 @@ export const FadeSlider = () => {
       >
         {tabsContent.map((item, index) => (
           <SwiperSlide key={index} className={styles.slide}>
-            <img src={item.slide} alt={item.tab} />
+            <img src={item.slide} alt={item.tab} className={styles.slideImage}/>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -168,9 +168,14 @@
 
 .swiper, .slide, .slideImage {
     height: 100%;
+    max-height: 854px;
 
     @include vp--1024 {
         width: 100%;
         max-height: calcVW(1200, 1600);
     }
+}
+
+.slideImage {
+    width: 100%;
 }
