@@ -111,11 +111,17 @@
 
 .photoWrapper {
     margin-top: 10px;
+    display: flex;
+    justify-content: center;
 
     @include vp--1024 {
         margin: 10px auto;
         max-width: 500px;
     }
+}
+
+.areaImage {
+    max-height: 425px;
 }
 
 .arrows {

@@ -76,7 +76,12 @@ export const Layout = () => {
                 <div className={styles.photoWrapper}>
                     {
                         activeAreaPhoto && (
-                            <img src={activeAreaPhoto} alt='area photo' loading='lazy'/>
+                            <img
+                             src={activeAreaPhoto} 
+                             alt='area photo' 
+                             loading='lazy'
+                             className={styles.areaImage}
+                            />
                         )
                     }
                 </div>
