@@ -79,7 +79,6 @@ export const Layout = () => {
                             <img
                              src={activeAreaPhoto} 
                              alt='area photo' 
-                             loading='lazy'
                              className={styles.areaImage}
                             />
                         )
