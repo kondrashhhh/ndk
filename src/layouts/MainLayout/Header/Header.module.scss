@@ -14,13 +14,14 @@
     width: 100%;
     padding: 20px 60px;
     background-color: transparent;
-    z-index: 11;
+    z-index: 2;
 
     @include vp--1024 {
         padding: 20px 30px;
     }
 
     @include vp--680 {
+        z-index: 11;
         padding: 20px 20px;
     }
 }
@@ -60,6 +61,7 @@
     -webkit-text-fill-color: #FFFFFF;
     font-size: 14px;
     font-weight: 400;
+    position: relative;
 }
 
 .mobilePhone {

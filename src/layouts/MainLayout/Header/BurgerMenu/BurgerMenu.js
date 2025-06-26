@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Burger } from '../Burger/Burger';
 import { ContactButton } from '@/components/ContactButton/ContactButton';
 import cn from 'classnames';
 import styles from './BurgerMenu.module.scss';
 
-export const BurgerMenu = ({ isMenuOpen }) => {
+export const BurgerMenu = ({ isMenuOpen, toggleMenu }) => {
   const isMobile = useMediaQuery({ query: `(max-width: 680px)`});
 
   const items = [
@@ -35,15 +36,15 @@ export const BurgerMenu = ({ isMenuOpen }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 680) {
+      // if (window.innerWidth <= 680) {
         if (isMenuOpen) {
           document.body.classList.add('body-no-scroll');
         } else {
           document.body.classList.remove('body-no-scroll');
         }
-      } else {
-        document.body.classList.remove('body-no-scroll');
-      }
+      // } else {
+      //   document.body.classList.remove('body-no-scroll');
+      // }
     };
 
     handleResize();
@@ -89,6 +90,13 @@ export const BurgerMenu = ({ isMenuOpen }) => {
                 >
                     Заказать звонок
                 </ContactButton>
+            )
+          }
+          {
+            !isMobile && (
+              <div className={styles.burger}>
+                  <Burger isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+              </div>
             )
           }
         </motion.div>

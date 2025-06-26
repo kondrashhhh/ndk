@@ -56,7 +56,7 @@ export const Header = () => {
             </div>
         </div>
         <div className={styles.burgerMenu}>
-            <BurgerMenu isMenuOpen={isMobileMenuOpen} />
+            <BurgerMenu isMenuOpen={isMobileMenuOpen} toggleMenu={toggleMobileMenu}/>
         </div>
     </header>
   )
