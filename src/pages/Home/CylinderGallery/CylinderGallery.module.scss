@@ -8,8 +8,8 @@
     transform: translate(0, -50%);
     z-index: 10;
     height: 40vw;
-    width: 40%;
-    overflow: hidden;
+    width: 45%;
+    overflow: visible;
 
     @include vp--680 {
         position: static;

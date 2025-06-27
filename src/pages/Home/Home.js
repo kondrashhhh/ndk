@@ -16,12 +16,12 @@ export const Home = () => {
   return (
     <MainLayout>
       <TopSection />
-      <IntroSlider />
+      <IntroSlider id='about' />
       <AutoSlider />
-      <Layout />
-      <Boxes />
-      <SecondSlider />
-      <Map />
+      <Layout id='layouts' />
+      <Boxes id='mortgage' />
+      <SecondSlider id='finishing' />
+      <Map id='map' />
       <FadeSlider />
       <Animation />
     </MainLayout>

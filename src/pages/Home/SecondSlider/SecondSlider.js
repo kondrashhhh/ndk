@@ -12,7 +12,7 @@ import 'swiper/css'
 import 'swiper/css/effect-fade';
 
 
-export const SecondSlider = () => {
+export const SecondSlider = ({ id }) => {
   const swiperRef = useRef(null);
   const prevButton = useRef(null);
   const nextButton = useRef(null);
@@ -42,7 +42,7 @@ export const SecondSlider = () => {
   }, [activeTab])
   
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id={id}>
       <Box size='m' className={styles.box}>
         <div className={styles.firstColumn}>
                 <Swiper

@@ -7,14 +7,14 @@ import cn from 'classnames';
 import styles from './BurgerMenu.module.scss';
 
 export const BurgerMenu = ({ isMenuOpen, toggleMenu }) => {
-  const isMobile = useMediaQuery({ query: `(max-width: 680px)`});
+  const isMobile = useMediaQuery({ query: `(max-width: 680px)` });
 
   const items = [
-    { title: 'О комплексе', url: '' },
-    { title: 'Планировки', url: '' },
-    { title: 'Ипотека', url: '' },
-    { title: 'Отделка', url: '' },
-    { title: 'Расположение', url: '' },
+    { title: 'О комплексе', url: '#about' },
+    { title: 'Планировки', url: '#layouts' },
+    { title: 'Ипотека', url: '#mortgage' },
+    { title: 'Отделка', url: '#finishing' },
+    { title: 'Расположение', url: '#map' },
   ];
 
   const menuVariants = {
@@ -34,26 +34,31 @@ export const BurgerMenu = ({ isMenuOpen, toggleMenu }) => {
     }
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      // if (window.innerWidth <= 680) {
-        if (isMenuOpen) {
-          document.body.classList.add('body-no-scroll');
-        } else {
-          document.body.classList.remove('body-no-scroll');
-        }
-      // } else {
-      //   document.body.classList.remove('body-no-scroll');
-      // }
-    };
-
-    handleResize();
+  const handleAnchorClick = (e) => {
+    e.preventDefault();
+    const targetId = e.currentTarget.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
     
-    window.addEventListener('resize', handleResize);
+    if (targetElement) {
+      toggleMenu(); // Закрываем меню
+      
+      setTimeout(() => {
+        targetElement.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }, 400);
+    }
+  };
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('body-no-scroll');
+    } else {
+      document.body.classList.remove('body-no-scroll');
+    }
     
     return () => {
       document.body.classList.remove('body-no-scroll');
-      window.removeEventListener('resize', handleResize);
     };
   }, [isMenuOpen]);
 
@@ -74,31 +79,28 @@ export const BurgerMenu = ({ isMenuOpen, toggleMenu }) => {
                 className={styles.item}
               >
                 <a
-                 href={navItem.url}
-                 className={styles.url}
+                  href={navItem.url}
+                  className={styles.url}
+                  onClick={handleAnchorClick}
                 >
                   {navItem.title}
                 </a>
               </motion.li>
             ))}
           </motion.ul>
-          {
-            isMobile && (
-                <ContactButton
-                 className={styles.mobileButton}
-                 background='white'
-                >
-                    Заказать звонок
-                </ContactButton>
-            )
-          }
-          {
-            !isMobile && (
-              <div className={styles.burger}>
-                  <Burger isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
-              </div>
-            )
-          }
+          {isMobile && (
+            <ContactButton
+              className={styles.mobileButton}
+              background='white'
+            >
+              Заказать звонок
+            </ContactButton>
+          )}
+          {!isMobile && (
+            <div className={styles.burger}>
+              <Burger isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+            </div>
+          )}
         </motion.div>
       )}
     </AnimatePresence>

@@ -3,9 +3,9 @@ import { Box } from '../components/Box/Box'
 import { items } from './content'
 import styles from './Boxes.module.scss'
 
-export const Boxes = () => {
+export const Boxes = ({ id }) => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper}id={id}>
         {
             items.map((item, index) => (
                 <Box

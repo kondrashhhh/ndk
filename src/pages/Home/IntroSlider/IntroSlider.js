@@ -9,7 +9,7 @@ import { Navigation } from 'swiper/modules';
 import { ArrowsContainer, ArrowButtonLeft, ArrowButtonRight } from '../components/ArrowsNav/ArrowsNav';
 import styles from './IntroSlider.module.scss'
 
-export const IntroSlider = () => {
+export const IntroSlider = ({ id }) => {
   const prevButton = useRef(null);
   const nextButton = useRef(null);
 
@@ -31,7 +31,7 @@ export const IntroSlider = () => {
 
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id={id}>
         <Box size='m' className={styles.box}>
             <div className={styles.titleWrapper}>
                 <Swiper

@@ -11,7 +11,7 @@ import 'swiper/css'
 import 'swiper/css/effect-fade';
 
 
-export const Layout = () => {
+export const Layout = ({ id }) => {
   const swiperRef = useRef(null);
   const prevButton = useRef(null);
   const nextButton = useRef(null);
@@ -41,7 +41,7 @@ export const Layout = () => {
   }, [activeTab])
   
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id={id}>
       <Box size='m' className={styles.box}>
         <div className={styles.firstColumn}>
             <div className={styles.top}>

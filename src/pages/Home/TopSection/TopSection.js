@@ -3,18 +3,18 @@ import { useMediaQuery } from 'react-responsive'
 import { AnimatePresence, motion } from 'framer-motion';
 import styles from './TopSection.module.scss'
 
-export const TopSection = () => {
+export const TopSection = ({ id }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 680px)' });
 
   const transition = {
-    duration: 1, // Увеличена длительность анимации
-    ease: [0.16, 0.77, 0.47, 0.97] // Кастомная плавная кривая
+    duration: 1,
+    ease: [0.16, 0.77, 0.47, 0.97] 
   };
 
   const textVariants = {
     hidden: { 
       opacity: 0,
-      x: -100 // Увеличен начальный сдвиг для более плавного появления
+      x: -100 
     },
     visible: {
       opacity: 1,
@@ -22,7 +22,7 @@ export const TopSection = () => {
       transition: {
         ...transition,
         when: "beforeChildren",
-        staggerChildren: 0.3 // Увеличена задержка между элементами
+        staggerChildren: 0.3 
       }
     }
   };
@@ -30,8 +30,8 @@ export const TopSection = () => {
   const itemVariants = {
     hidden: { 
       opacity: 0, 
-      x: -100, // Увеличен начальный сдвиг
-      transition: { duration: 1.2 } // Индивидуальная длительность для элементов
+      x: -100,
+      transition: { duration: 1.2 } 
     },
     visible: { 
       opacity: 1, 
@@ -44,7 +44,7 @@ export const TopSection = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id={id}>
       <div className={styles.wrapper}>
         <div className={styles.firstColumn}>
           <AnimatePresence mode="wait">
@@ -53,19 +53,19 @@ export const TopSection = () => {
               initial="hidden"
               animate="visible"
               variants={textVariants}
-              transition={{ delay: 0.2 }} // Небольшая задержка перед началом анимации
+              transition={{ delay: 0.2 }}
             >
               <motion.h3 
                 className={styles.h3}
                 variants={itemVariants}
-                transition={{ delay: 0.3 }} // Дополнительная задержка для заголовка
+                transition={{ delay: 0.3 }} 
               >
                 семейный <br/> квартал, в центре <br/> Новоселья
               </motion.h3>
               <motion.span
                 className={styles.span}
                 variants={itemVariants}
-                transition={{ delay: 0.5 }} // Большая задержка для подзаголовка
+                transition={{ delay: 0.5 }}
               >
                 Комфорт <br /> в каждом метре
               </motion.span>
@@ -78,7 +78,7 @@ export const TopSection = () => {
             initial="hidden"
             animate="visible"
             variants={textVariants}
-            transition={{ delay: 0.4 }} // Задержка для второго столбца
+            transition={{ delay: 0.4 }} 
           >
             {[
               { title: "от 4,3 млн.₽", desc: "1 кк кв при 100% оплате" },
@@ -91,7 +91,7 @@ export const TopSection = () => {
                 key={index}
                 className={styles.textItem}
                 variants={itemVariants}
-                transition={{ delay: 0.5 + index * 0.15 }} // Постепенное увеличение задержки
+                transition={{ delay: 0.5 + index * 0.15 }} 
               >
                 <h4 className={styles.h4}>{item.title}</h4>
                 <span className={styles.smspan}>{item.desc}</span>
