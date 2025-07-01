@@ -1,3 +1,6 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
 .block {
     width: 100vw;
 }
@@ -10,6 +13,14 @@
   flex-direction: column;
   gap: 8px;
   z-index: 1000;
+
+  @include vp--1024 {
+    top: 60%;
+  }
+
+  @include vp--680 {
+    top: 54%;
+  }
 }
 
 .zoomButton {

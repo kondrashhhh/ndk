@@ -1,7 +1,14 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
 .block {
     z-index: 1;
     position: absolute;
     min-height: 28vw;
+
+    @include vp--1024 {
+        width: 100%;
+    }
 }
 
 .wrapper {
@@ -22,6 +29,10 @@
     background: #fff;
     cursor: pointer;
     outline: none;
+
+    @include vp--1024 {
+        width: 100%;
+    }
 }
 
 .dropdown {
@@ -45,6 +56,11 @@
     border: 1px solid #e5e5e5;
     border-top: none;
     list-style: none;
+
+    @include vp--1024 {
+        height: 200px;
+        margin-top: 1px;
+    }
 }
 
 
