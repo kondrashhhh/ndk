@@ -166,7 +166,17 @@
     font-size: 16px;
 }
 
-.swiper, .slide, .slideImage {
+.slide {
+    height: auto;
+    max-height: 775px;
+
+    @include vp--1024 {
+        width: 100%;
+        max-height: calcVW(1200, 1600);
+    }
+}
+
+.swiper, .slideImage {
     height: 100%;
     max-height: 775px;
 
