@@ -1,7 +1,7 @@
 export const tabsContent = [
     {
         tab: 'ДВОР-ПАРК С ПОТРЯСАЮЩИМ ОЗЕЛЕНЕНИЕМ',
-        slide: '/home/fade_slider/slide1.png',
+        slide: '/home/autoslider/video.mp4',
     },
     {
         tab: 'ПРЕМИАЛЬНЫЙ a-fitness КЛУБ С БАССЕЙНОМ',

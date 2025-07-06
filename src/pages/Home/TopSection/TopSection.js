@@ -6,6 +6,9 @@ import styles from './TopSection.module.scss'
 export const TopSection = ({ id }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 680px)' });
 
+  const mobileSmallText = <>Комфорт <br /> в каждом <br /> метре</>;
+  const desktopSmallText = <>Комфорт <br /> в каждом метре</>;
+
   const transition = {
     duration: 1,
     ease: [0.16, 0.77, 0.47, 0.97] 
@@ -67,7 +70,15 @@ export const TopSection = ({ id }) => {
                 variants={itemVariants}
                 transition={{ delay: 0.5 }}
               >
-                Комфорт <br /> в каждом метре
+                {
+                  !isMobile ? (
+                    desktopSmallText
+                  )
+                            :
+                  (
+                    mobileSmallText
+                  )
+                }
               </motion.span>
             </motion.div>
           </AnimatePresence>

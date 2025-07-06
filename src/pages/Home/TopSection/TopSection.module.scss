@@ -6,6 +6,7 @@
 }
 
 .wrapper {
+    position: relative;
     display: flex;
     flex-direction: row;
     background-image: url(/home/background.png);
@@ -25,6 +26,7 @@
     @include vp--680 {
         padding: 25% 15px 0;
         background: rgba(7, 35, 56, 1);
+        max-height: 481px;
     }
 }
 
@@ -74,6 +76,11 @@
         margin-top: 80px;
         width: 100%;
     }
+
+    @include vp--680 {
+        position: sticky;
+        z-index: 1;
+    }
 }
 
 .textBlock {
@@ -100,7 +107,7 @@
     line-height: 118%;
 
     @include vp--680 {
-        font-size: 30px;
+        font-size: 20px;
     }
 }
 
@@ -114,8 +121,9 @@
     line-height: 22px;
 
     @include vp--680 {
-        left: 225px;
-        bottom: -32px;
+        left: 160px;
+        bottom: -50px;
+        font-size: 16px;
     }
 }
 
@@ -123,8 +131,13 @@
     font-size: 30px;
     font-weight: 500;
     line-height: 110%;
+
+    @include vp--680 {
+        font-size: 20px;
+    }
 }
 
 .smspan {
+    font-weight: 200;
     font-size: 16px;
 }

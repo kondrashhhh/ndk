@@ -84,9 +84,6 @@ export const SecondSlider = ({ id }) => {
                             <ArrowButtonLeft ref={prevButton} />
                             <ArrowButtonRight ref={nextButton} />
                         </ArrowsContainer> 
-                        <span className={styles.counter}>
-                            {currentSlide} / {totalSlides}
-                        </span>
                     </div> 
                 )        : (
                     <div className={styles.arrows}>
@@ -122,7 +119,11 @@ export const SecondSlider = ({ id }) => {
                         </Tab>
                     ))}
                 </div>
-                <span className={styles.title}>3 вида</span>
+                {
+                  !isMobile && (
+                    <span className={styles.title}>3 вида</span>
+                  )
+                }
             </div>
         </div>
       </Box>

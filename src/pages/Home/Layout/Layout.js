@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { useMediaQuery } from 'react-responsive';
 import { ArrowsContainer, ArrowButtonLeft, ArrowButtonRight } from '../components/ArrowsNav/ArrowsNav';
 import { ContactButton } from '@/components/ContactButton/ContactButton';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,6 +16,8 @@ export const Layout = ({ id }) => {
   const swiperRef = useRef(null);
   const prevButton = useRef(null);
   const nextButton = useRef(null);
+
+  const isMobile = useMediaQuery({query: `(max-width: 680px)`});
 
   const [activeTab, setActiveTab] = useState(0);
   const [activeArea, setActiveArea] = useState(0);
@@ -39,6 +42,53 @@ export const Layout = ({ id }) => {
     setCurrentSlide(1);
     setTotalSlides(activePhotos.length);
   }, [activeTab])
+
+  const PhotoWrapper = 
+    <div className={styles.photoWrapper}>
+        {
+            activeAreaPhoto && (
+                <img
+                    src={activeAreaPhoto} 
+                    alt='area photo' 
+                    className={styles.areaImage}
+                />
+            )
+        }
+    </div>
+
+    const Slider = 
+        <Swiper
+            className={styles.swiper}
+            modules={[Navigation, EffectFade]}
+            navigation={navReady ? {
+                prevEl: prevButton.current,
+                nextEl: nextButton.current,
+            } : false}
+            onSwiper={(swiper) => swiperRef.current = swiper}
+            onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
+            onInit={(swiper) => {
+                setTotalSlides(swiper.slides.length);
+                setCurrentSlide(swiper.realIndex + 1);
+            }}                
+            followFinger={false}
+            simulateTouch={false}
+            allowTouchMove={false}
+            speed={600}
+            spaceBetween={5}
+            slidesPerView={1}
+        >
+            {
+                activePhotos.map((item, index) => (
+                    <SwiperSlide className={styles.slide} key={index}>
+                        <img 
+                            src={item.photo}
+                            alt={areaContent[activeTab].title}
+                            className={styles.slideImage}
+                        />
+                    </SwiperSlide>
+                ))
+            }
+        </Swiper>
   
   return (
     <div className={styles.wrapper} id={id}>
@@ -73,60 +123,45 @@ export const Layout = ({ id }) => {
                         </Tab>
                     ))}
                 </div>
-                <div className={styles.photoWrapper}>
-                    {
-                        activeAreaPhoto && (
-                            <img
-                             src={activeAreaPhoto} 
-                             alt='area photo' 
-                             className={styles.areaImage}
-                            />
-                        )
-                    }
-                </div>
+                {
+                    !isMobile ? (
+                        <>
+                          {PhotoWrapper}
+                        </>
+                    )         :
+                    (
+                        <>
+                          {Slider}
+                        </>
+                    )
+                }
             </div>
         </div>
         <div className={styles.secondColumn}>
-            <Swiper
-                className={styles.swiper}
-                modules={[Navigation, EffectFade]}
-                navigation={navReady ? {
-                    prevEl: prevButton.current,
-                    nextEl: nextButton.current,
-                } : false}
-                onSwiper={(swiper) => swiperRef.current = swiper}
-                onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
-                onInit={(swiper) => {
-                    setTotalSlides(swiper.slides.length);
-                    setCurrentSlide(swiper.realIndex + 1);
-                }}                
-                followFinger={false}
-                simulateTouch={false}
-                allowTouchMove={false}
-                speed={600}
-                spaceBetween={5}
-                slidesPerView={1}
-            >
-                {
-                    activePhotos.map((item, index) => (
-                        <SwiperSlide className={styles.slide} key={index}>
-                            <img 
-                              src={item.photo}
-                              alt={areaContent[activeTab].title}
-                              className={styles.slideImage}
-                            />
-                        </SwiperSlide>
-                    ))
-                }
-            </Swiper>
+            {
+                !isMobile ? (
+                    <>
+                        {Slider}
+                    </>
+                )         :
+                (
+                    <>
+                        {PhotoWrapper}
+                    </>
+                )
+            }
             <div className={styles.arrows}>
                 <ArrowsContainer>
                     <ArrowButtonLeft ref={prevButton} />
                     <ArrowButtonRight ref={nextButton} />
                 </ArrowsContainer>
-                <span className={styles.counter}>
-                    {currentSlide} / {totalSlides}
-                </span>
+                {
+                    !isMobile && (
+                        <span className={styles.counter}>
+                            {currentSlide} / {totalSlides}
+                        </span>
+                    )
+                }
             </div>
             <ContactButton
               className={styles.contact}

@@ -14,7 +14,7 @@
     }
 
     @include vp--680 {
-        min-height: 600px;
+        min-height: 800px;
         padding: 0 15px;
     }
 }
@@ -37,6 +37,7 @@
     @include vp--680 {
         width: calc(100% - 30px);
         left: 15px;
+        top: -90px;
     }
 }
 
@@ -85,13 +86,15 @@
     padding: 0;
 
     @include vp--680 {
-        height: 236px;
-        min-height: 236px;
+        height: 443px;
+        min-height: 443px;
     }
 }
 
 .imageSlider {
     min-width: 0;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
 
     @include vp--1024 {
         padding-left: 25px;
@@ -145,7 +148,11 @@
 	}
 
     @include vp--680 {
+        font-size: 12px;
+        margin-top: 40px;
         padding-left: 100px;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
 	}
 }
 
@@ -175,7 +182,8 @@
 
     @include vp--680 {
         width: 15px;
-        min-height: 450px;
+        min-height: 478px;
+        bottom: 315px;
     }
 }
 
@@ -185,6 +193,14 @@
     justify-content: center;
     align-items: center;
     gap: 15px;   
+}
+
+.textSliderSlide {
+    @include vp--680 {
+        display: flex;
+        height: auto;
+        align-items: center;
+    }
 }
 
 .counter {

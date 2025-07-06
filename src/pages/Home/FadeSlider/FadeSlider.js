@@ -41,9 +41,24 @@ export const FadeSlider = () => {
         slidesPerView={1}
       >
         {tabsContent.map((item, index) => (
-          <SwiperSlide key={index} className={styles.slide}>
-            <img src={item.slide} alt={item.tab} className={styles.slideImage}/>
-          </SwiperSlide>
+          index === 0 ? (
+            <SwiperSlide key={index} className={styles.slide}>
+              <video
+               autoPlay
+               loop
+               muted
+               playsInline
+               src={item.slide} 
+               alt={item.tab} 
+               className={styles.slideImage}
+              />
+            </SwiperSlide>
+          )           :
+          (
+            <SwiperSlide key={index} className={styles.slide}>
+              <img src={item.slide} alt={item.tab} className={styles.slideImage}/>
+            </SwiperSlide>
+          )
         ))}
       </Swiper>
       
