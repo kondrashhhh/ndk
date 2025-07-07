@@ -34,18 +34,31 @@ export const AutoSlider = () => {
             )
           }
             <div className={styles.text}>
-              <Swiper
-                className={styles.slider}
-                speed={600}
-                slidesPerView={1}
-                autoplay={{
-                  delay: 5000,
-                  disableOnInteraction: false,
-                }}
-                modules={[Autoplay]}
-                allowTouchMove={true}
-                loop={true}
-              >
+                <Swiper
+                  className={styles.slider}
+                  speed={600}
+                  slidesPerView={1}
+                  loop={true}
+                  modules={[Autoplay]}
+                  autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false,
+                  }}
+                  allowTouchMove={true}
+                  breakpoints={{
+                    0: { 
+                      autoplay: false,
+                      allowTouchMove: false,
+                    },
+                    680: {
+                      autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false,
+                      },
+                      allowTouchMove: true,
+                    },
+                  }}
+                >
                 <SwiperSlide>
                   <p>
                     беспрецедентное <br/>

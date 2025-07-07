@@ -15,17 +15,17 @@ function CylinderWithGaps({ radius = 2.1, height = 6 }) {
   const autoRotateSpeed = 0.005
   
   const photos = [
-    '/home/fade_slider/slide1.png',
-    '/home/fade_slider/slide1.png',
-    '/home/fade_slider/slide1.png',
-    '/home/fade_slider/slide1.png',
-    '/home/fade_slider/slide1.png'
+    '/home/cylinder/slide1.jpg',
+    '/home/cylinder/slide2.jpg',
+    '/home/cylinder/slide3.jpg',
+    '/home/cylinder/slide4.jpg',
+    '/home/cylinder/slide5.jpg',
   ]
 
   const textures = useTexture(photos)
   
   const segmentCount = 5
-  const gapSize = 0.15
+  const gapSize = 0.1
 
   useEffect(() => {
     const checkMobile = () => {
@@ -152,7 +152,7 @@ function CylinderWithGaps({ radius = 2.1, height = 6 }) {
 
 
 export default function CylinderGallery() {
-  const height = 6
+  const height = 5.5
   
   return (
     <div className={styles.cylinder} style={{ touchAction: 'none' }}>
