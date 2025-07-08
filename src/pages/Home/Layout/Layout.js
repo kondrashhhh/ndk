@@ -72,7 +72,7 @@ export const Layout = ({ id }) => {
             }}                
             followFinger={false}
             simulateTouch={false}
-            allowTouchMove={false}
+            allowTouchMove={isMobile}
             speed={600}
             spaceBetween={5}
             slidesPerView={1}
