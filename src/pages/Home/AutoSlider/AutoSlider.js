@@ -38,15 +38,7 @@ export const AutoSlider = () => {
                   speed={600}
                   slidesPerView={1}
                   loop={true}
-                  allowTouchMove={true}
-                  breakpoints={{
-                    0: { 
-                      allowTouchMove: false,
-                    },
-                    680: {
-                      allowTouchMove: true,
-                    },
-                  }}
+                  allowTouchMove={false}
                 >
                 <SwiperSlide>
                   <p>
