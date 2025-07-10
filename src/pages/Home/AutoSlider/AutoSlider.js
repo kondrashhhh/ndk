@@ -2,7 +2,6 @@ import React from 'react'
 import { Box } from '../components/Box/Box'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useMediaQuery } from 'react-responsive';
-import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import styles from './AutoSlider.module.scss'
 
@@ -39,22 +38,12 @@ export const AutoSlider = () => {
                   speed={600}
                   slidesPerView={1}
                   loop={true}
-                  modules={[Autoplay]}
-                  autoplay={{
-                    delay: 5000,
-                    disableOnInteraction: false,
-                  }}
                   allowTouchMove={true}
                   breakpoints={{
                     0: { 
-                      autoplay: false,
                       allowTouchMove: false,
                     },
                     680: {
-                      autoplay: {
-                        delay: 5000,
-                        disableOnInteraction: false,
-                      },
                       allowTouchMove: true,
                     },
                   }}
