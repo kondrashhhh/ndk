@@ -123,33 +123,11 @@ export const Layout = ({ id }) => {
                         </Tab>
                     ))}
                 </div>
-                {
-                    !isMobile ? (
-                        <>
-                          {PhotoWrapper}
-                        </>
-                    )         :
-                    (
-                        <>
-                          {Slider}
-                        </>
-                    )
-                }
+                {PhotoWrapper}
             </div>
         </div>
         <div className={styles.secondColumn}>
-            {
-                !isMobile ? (
-                    <>
-                        {Slider}
-                    </>
-                )         :
-                (
-                    <>
-                        {PhotoWrapper}
-                    </>
-                )
-            }
+            {Slider}
             <div className={styles.arrows}>
                 <ArrowsContainer>
                     <ArrowButtonLeft ref={prevButton} />

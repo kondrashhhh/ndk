@@ -9,7 +9,7 @@ export const Section = ({ item, onPlaceChange, onCategoryChange }) => {
   const handleCategoryChange = (e) => {
     const isChecked = e.target.checked;
     setChecked(isChecked);
-    onCategoryChange(item.id, isChecked); // Передаем состояние категории
+    onCategoryChange(item.id, isChecked); 
   };
 
   return (

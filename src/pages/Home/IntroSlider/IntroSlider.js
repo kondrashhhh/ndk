@@ -29,7 +29,6 @@ export const IntroSlider = ({ id }) => {
 
   const isMobile = useMediaQuery({ maxWidth: 680 });
 
-  // Функция для синхронизации всех слайдеров
   const syncSwipers = (activeIndex) => {
     if (swiperRef1.current && isMobile) swiperRef1.current.slideTo(activeIndex);
     if (swiperRef2.current && isMobile) swiperRef2.current.slideTo(activeIndex);
@@ -83,7 +82,6 @@ export const IntroSlider = ({ id }) => {
       modules={[Navigation]}
       onSwiper={(swiper) => { 
         swiperRef2.current = swiper;
-        // Инициализация общего количества слайдов
         setTotalSlides(swiper.slides.length);
         setCurrentSlide(swiper.realIndex + 1);
       }}

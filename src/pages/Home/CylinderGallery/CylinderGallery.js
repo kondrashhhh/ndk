@@ -100,7 +100,6 @@ function CylinderWithGaps({ radius = 2.1, height = 6 }) {
 
   return (
     <group rotation={[-0.75, 0, 0.5]}>
-      {/* Плоскость для мягких размытых теней */}
       <mesh 
         rotation={[-Math.PI / 10, 0, 0]} 
         position={[0, -height/2 - 2, 0]}
@@ -111,7 +110,7 @@ function CylinderWithGaps({ radius = 2.1, height = 6 }) {
           transparent 
           opacity={0.15}
           color="black"
-          blur={30} // Увеличиваем размытие
+          blur={30} 
         />
       </mesh>
 
@@ -160,7 +159,7 @@ export default function CylinderGallery() {
         camera={{ position: [0, 2, 10], fov: 50 }}
         shadows={{
           enabled: true,
-          type: THREE.PCFSoftShadowMap // Мягкие тени
+          type: THREE.PCFSoftShadowMap 
         }}
         gl={{
           antialias: true,
@@ -169,25 +168,23 @@ export default function CylinderGallery() {
       >
         <ambientLight intensity={0.6} color="#ffffff" />
         
-        {/* Основной источник света с размытыми тенями */}
         <directionalLight
           position={[-18, 30, 20]}
-          intensity={0.5} // Увеличил интенсивность
+          intensity={0.5} 
           castShadow
           shadow-mapSize-width={4096}
           shadow-mapSize-height={4096}
           shadow-camera-near={0.1}
           shadow-camera-far={200}
-          shadow-camera-left={-200} // Расширил область теней
+          shadow-camera-left={-200} 
           shadow-camera-right={200}
           shadow-camera-top={200}
           shadow-camera-bottom={-200}
-          shadow-radius={200} // Увеличил размытие краев
-          shadow-blurSamples={50} // Качество размытия
+          shadow-radius={200} // 
+          shadow-blurSamples={50} 
           shadow-bias={-0.0005}
         />
         
-        {/* Заполняющий свет */}
         <directionalLight
           position={[-5, 10, -5]}
           intensity={0.8}

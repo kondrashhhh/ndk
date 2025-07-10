@@ -9,14 +9,14 @@ export const Item = ({ subItem, onPlaceChange, categoryChecked }) => {
     if (!categoryChecked) {
       setChecked(false);
     } else {
-      setChecked(true); // Восстанавливаем состояние при включении категории
+      setChecked(true); 
     }
   }, [categoryChecked]);
 
   const handleChange = (e) => {
     const isChecked = e.target.checked;
     setChecked(isChecked);
-    onPlaceChange(subItem.id, isChecked); // Передаем состояние чекбокса
+    onPlaceChange(subItem.id, isChecked);
   };
 
   return (
