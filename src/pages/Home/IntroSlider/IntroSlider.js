@@ -13,13 +13,18 @@ export const IntroSlider = ({ id }) => {
   const prevButton = useRef(null);
   const nextButton = useRef(null);
 
-  const swiperRef1 = useRef(null); // TextSlider
-  const swiperRef2 = useRef(null); // ImageSlider
-  const swiperRef3 = useRef(null); // TitleSlider
+  const swiperRefText = useRef(null); // TextSlider
+  const swiperRefImage = useRef(null); // ImageSlider (ведущий)
+  const swiperRefTitle = useRef(null); // TitleSlider
 
   const [navReady, setNavReady] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [totalSlides, setTotalSlides] = useState(slides.length);
+
+  const isMobile = useMediaQuery({ maxWidth: 680 });
+
+  // Флаг для предотвращения циклических вызовов slideTo
+  const isSyncingRef = useRef(false);
 
   useEffect(() => {
     if (prevButton.current && nextButton.current) {
@@ -27,30 +32,41 @@ export const IntroSlider = ({ id }) => {
     }
   }, [prevButton.current, nextButton.current]);
 
-  const isMobile = useMediaQuery({ maxWidth: 680 });
+  // Обработчик смены слайда у ведущего слайдера (ImageSlider)
+  const onImageSlideChange = (swiper) => {
+    if (isSyncingRef.current) return;
 
-  const syncSwipers = (activeIndex) => {
-    if (swiperRef1.current && isMobile) swiperRef1.current.slideTo(activeIndex);
-    if (swiperRef2.current && isMobile) swiperRef2.current.slideTo(activeIndex);
-    if (swiperRef3.current && isMobile) swiperRef3.current.slideTo(activeIndex);
-    setCurrentSlide(activeIndex + 1);
+    isSyncingRef.current = true;
+
+    const index = swiper.realIndex;
+    setCurrentSlide(index + 1);
+
+    if (swiperRefText.current && swiperRefText.current.realIndex !== index) {
+      swiperRefText.current.slideTo(index);
+    }
+    if (swiperRefTitle.current && swiperRefTitle.current.realIndex !== index) {
+      swiperRefTitle.current.slideTo(index);
+    }
+
+    isSyncingRef.current = false;
   };
 
-  const handleSlideChange = (swiper) => {
-    syncSwipers(swiper.realIndex);
-    console.log(currentSlide)
+  // Обработчик смены слайда у ведомых слайдеров (TextSlider, TitleSlider)
+  // Просто обновляем currentSlide без переключения ImageSlider
+  const onSlaveSlideChange = (swiper) => {
+    if (isSyncingRef.current) return;
+    setCurrentSlide(swiper.realIndex + 1);
   };
 
-  const TextSlider = 
+  // === JSX не меняется, только меняем обработчики и навигацию ===
+
+  const TextSlider = (
     <Swiper
       className={styles.textSlider}
       modules={[Navigation]}
-      onSwiper={(swiper) => { swiperRef1.current = swiper; }}
-      navigation={navReady ? {
-        prevEl: prevButton.current,
-        nextEl: nextButton.current,
-      } : false}
-      onSlideChange={handleSlideChange}
+      onSwiper={(swiper) => { swiperRefText.current = swiper; }}
+      navigation={false} // навигация убрана
+      onSlideChange={onSlaveSlideChange}
       followFinger={false}
       simulateTouch={false}
       allowTouchMove={false}
@@ -75,13 +91,14 @@ export const IntroSlider = ({ id }) => {
         </span>
       </div>
     </Swiper>
+  );
 
-  const ImageSlider = 
+  const ImageSlider = (
     <Swiper
       className={cn(styles.swiper, styles.imageSlider)}
       modules={[Navigation]}
-      onSwiper={(swiper) => { 
-        swiperRef2.current = swiper;
+      onSwiper={(swiper) => {
+        swiperRefImage.current = swiper;
         setTotalSlides(swiper.slides.length);
         setCurrentSlide(swiper.realIndex + 1);
       }}
@@ -89,14 +106,14 @@ export const IntroSlider = ({ id }) => {
         prevEl: prevButton.current,
         nextEl: nextButton.current,
       } : false}
-      onSlideChange={handleSlideChange}
+      onSlideChange={onImageSlideChange}
       onInit={(swiper) => {
         setTotalSlides(swiper.slides.length);
         setCurrentSlide(swiper.realIndex + 1);
       }}
       followFinger={isMobile}
-      simulateTouch={isMobile} 
-      allowTouchMove={isMobile} 
+      simulateTouch={isMobile}
+      allowTouchMove={isMobile}
       speed={600}
       spaceBetween={5}
       slidesPerView={1.01}
@@ -117,12 +134,13 @@ export const IntroSlider = ({ id }) => {
         slides.map((slide, index) => (
           <SwiperSlide key={index}>
             <Box className={styles.slideBox}>
-              <img src={slide.image} alt="" className={styles.slideImage}/>
+              <img src={slide.image} alt="" className={styles.slideImage} />
             </Box>
           </SwiperSlide>
         ))
       }
     </Swiper>
+  );
 
   return (
     <div className={styles.wrapper} id={id}>
@@ -130,12 +148,9 @@ export const IntroSlider = ({ id }) => {
         <div className={styles.titleWrapper}>
           <Swiper
             modules={[Navigation]}
-            onSwiper={(swiper) => { swiperRef3.current = swiper; }}
-            onSlideChange={handleSlideChange}
-            navigation={navReady ? {
-              prevEl: prevButton.current,
-              nextEl: nextButton.current,
-            } : false}
+            onSwiper={(swiper) => { swiperRefTitle.current = swiper; }}
+            onSlideChange={onSlaveSlideChange}
+            navigation={false} // навигация убрана
             followFinger={false}
             simulateTouch={false}
             allowTouchMove={false}
