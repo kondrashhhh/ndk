@@ -9,7 +9,7 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    background-image: url(/home/background.png);
+    background-image: url(/home/background.webp);
     background-position: 100% 15%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -58,7 +58,7 @@
 }
 
 .mobile {
-    background-image: url(/home/background.png);
+    background-image: url(/home/background.webp);
     background-position: center 0%;
     background-size: cover;
     width: 100%;
