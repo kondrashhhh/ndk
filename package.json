@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.1.0",
+    "next-image-loader": "^3.0.0",
     "sass": "^1.63.3"
   }
 }
