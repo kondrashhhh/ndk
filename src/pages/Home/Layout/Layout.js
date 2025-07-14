@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useMediaQuery } from 'react-responsive';
+import dynamic from 'next/dynamic';
 import { ArrowsContainer, ArrowButtonLeft, ArrowButtonRight } from '../components/ArrowsNav/ArrowsNav';
 import { ContactButton } from '@/components/ContactButton/ContactButton';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -11,6 +12,18 @@ import styles from './Layout.module.scss'
 import 'swiper/css'
 import 'swiper/css/effect-fade';
 
+// Компонент для клиентского рендеринга изображений
+const ClientOnlyImage = ({ src, alt, className }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return <div className={className} style={{ backgroundColor: '#f0f0f0' }} />;
+
+  return <img src={src} alt={alt} className={className} />;
+};
 
 export const Layout = ({ id }) => {
   const swiperRef = useRef(null);
@@ -37,17 +50,19 @@ export const Layout = ({ id }) => {
   }, [prevButton.current, nextButton.current]);
 
   useEffect(() => {
-    swiperRef.current.slideTo(0);
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(0);
+    }
     setActiveArea(0);
     setCurrentSlide(1);
     setTotalSlides(activePhotos.length);
-  }, [activeTab])
+  }, [activeTab, activePhotos.length])
 
   const PhotoWrapper = 
     <div className={styles.photoWrapper}>
         {
             activeAreaPhoto && (
-                <img
+                <ClientOnlyImage
                     src={activeAreaPhoto} 
                     alt='area photo' 
                     className={styles.areaImage}
@@ -80,7 +95,7 @@ export const Layout = ({ id }) => {
             {
                 activePhotos.map((item, index) => (
                     <SwiperSlide className={styles.slide} key={index}>
-                        <img 
+                        <ClientOnlyImage 
                             src={item.photo}
                             alt={areaContent[activeTab].title}
                             className={styles.slideImage}
