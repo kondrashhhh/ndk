@@ -62,6 +62,10 @@
     font-size: 14px;
     font-weight: 400;
     position: relative;
+
+    @include vp--1920 {
+        font-size: 24px;
+    }
 }
 
 .mobilePhone {

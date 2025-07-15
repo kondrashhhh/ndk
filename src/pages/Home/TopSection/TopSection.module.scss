@@ -90,6 +90,10 @@
 .textBlock {
     position: relative;
     max-width: 685px;
+
+    @include vp--1920 {
+        max-width: 800px;
+    }
 }
 
 .textItem {
@@ -110,6 +114,10 @@
     font-weight: 500;
     line-height: 118%;
 
+    @include vp--1920 {
+        font-size: 70px;
+    }
+
     @include vp--680 {
         font-size: 20px;
     }
@@ -124,6 +132,11 @@
     font-size: 20px;
     line-height: 22px;
 
+    @include vp--1920 {
+        left: 560px;
+        bottom: 11px;
+    }
+
     @include vp--680 {
         left: 160px;
         bottom: -50px;
@@ -136,6 +149,10 @@
     font-weight: 500;
     line-height: 110%;
 
+    @include vp--1920 {
+        font-size: 50px;
+    }   
+
     @include vp--680 {
         font-size: 20px;
     }
@@ -144,4 +161,8 @@
 .smspan {
     font-weight: 200;
     font-size: 16px;
+
+    @include vp--1920 {
+        font-size: 26px;
+    }   
 }
