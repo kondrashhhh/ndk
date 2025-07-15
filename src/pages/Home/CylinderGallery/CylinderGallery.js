@@ -151,7 +151,20 @@ function CylinderWithGaps({ radius = 2.1, height = 6 }) {
 
 
 export default function CylinderGallery() {
-  const height = 5.5
+  const [isLarge, setIsLarge] = useState(false)
+
+  useEffect(() => {
+    const checkLarge = () => {
+      const large = window.innerWidth >= 1920
+      setIsLarge(large)
+    }
+    
+    checkLarge()
+    window.addEventListener('resize', checkLarge)
+    return () => window.removeEventListener('resize', checkLarge)
+  }, [])
+
+  const height = isLarge ? 6.5 : 5.5;
   
   return (
     <div className={styles.cylinder} style={{ touchAction: 'none' }}>
