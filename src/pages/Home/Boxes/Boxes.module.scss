@@ -27,6 +27,11 @@
     transition: .2s ease-in;
     padding-left: calcVW(30, 1600);
 
+    @include vp--1920 {
+        flex: 1 1 10%;
+        padding: 2.125vw;
+    }
+
     @include vp--1024 {
         flex: 1 1 40%;
         padding-left: calcVW(50, 1600);

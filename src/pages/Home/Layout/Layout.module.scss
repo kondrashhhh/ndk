@@ -20,6 +20,10 @@
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
 
+    @include vp--1920 {
+        min-height: 950px;
+    }
+
     @include vp--1024 {
         border-radius: 0;
         flex-direction: column;
@@ -123,6 +127,10 @@
 
 .areaImage {
     max-height: 390px;
+
+    @include vp--1920 {
+        max-height: 540px;
+    }
 }
 
 .arrows {
