@@ -1,6 +1,12 @@
+@import '@/styles/mixins.scss';
+
 .content {
     overflow-x: hidden;
 	position: relative;
 	z-index: 1;
 	background: #ffffff;
+
+	@include vp--1920 {
+		background: rgb(240, 240, 240);
+	}
 }

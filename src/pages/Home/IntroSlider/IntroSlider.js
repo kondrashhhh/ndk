@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import cn from 'classnames'
 import 'swiper/css'
@@ -12,19 +12,41 @@ import styles from './IntroSlider.module.scss'
 export const IntroSlider = ({ id }) => {
   const prevButton = useRef(null);
   const nextButton = useRef(null);
+  const marginEl = useRef(null);
 
-  const swiperRefText = useRef(null); // TextSlider
-  const swiperRefImage = useRef(null); // ImageSlider (ведущий)
-  const swiperRefTitle = useRef(null); // TitleSlider
+  const swiperRefText = useRef(null); 
+  const swiperRefImage = useRef(null); 
+  const swiperRefTitle = useRef(null);
 
   const [navReady, setNavReady] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [totalSlides, setTotalSlides] = useState(slides.length);
+  const [margin, setMargin] = useState(null)
 
   const isMobile = useMediaQuery({ maxWidth: 680 });
+  const isLarge = useMediaQuery({ minWidth: 1920 })
 
-  // Флаг для предотвращения циклических вызовов slideTo
   const isSyncingRef = useRef(false);
+
+useEffect(() => {
+  if (!marginEl.current || typeof ResizeObserver === 'undefined' || !isLarge) return;
+
+  const updateMargin = () => {
+    if (!marginEl.current) return;
+    const marginRight = window.getComputedStyle(marginEl.current).marginRight;
+    const marginRightValue = parseFloat(marginRight) || 0;
+    const totalMargin = `${marginRightValue + 70}px`;
+    setMargin(totalMargin);
+  };
+
+  const observer = new ResizeObserver(updateMargin);
+  observer.observe(marginEl.current);
+  updateMargin();
+
+  return () => {
+    observer.disconnect();
+  };
+}, [isLarge])
 
   useEffect(() => {
     if (prevButton.current && nextButton.current) {
@@ -32,7 +54,6 @@ export const IntroSlider = ({ id }) => {
     }
   }, [prevButton.current, nextButton.current]);
 
-  // Обработчик смены слайда у ведущего слайдера (ImageSlider)
   const onImageSlideChange = (swiper) => {
     if (isSyncingRef.current) return;
 
@@ -51,21 +72,17 @@ export const IntroSlider = ({ id }) => {
     isSyncingRef.current = false;
   };
 
-  // Обработчик смены слайда у ведомых слайдеров (TextSlider, TitleSlider)
-  // Просто обновляем currentSlide без переключения ImageSlider
   const onSlaveSlideChange = (swiper) => {
     if (isSyncingRef.current) return;
     setCurrentSlide(swiper.realIndex + 1);
   };
-
-  // === JSX не меняется, только меняем обработчики и навигацию ===
 
   const TextSlider = (
     <Swiper
       className={styles.textSlider}
       modules={[Navigation]}
       onSwiper={(swiper) => { swiperRefText.current = swiper; }}
-      navigation={false} // навигация убрана
+      navigation={false} 
       onSlideChange={onSlaveSlideChange}
       followFinger={false}
       simulateTouch={false}
@@ -144,13 +161,13 @@ export const IntroSlider = ({ id }) => {
 
   return (
     <div className={styles.wrapper} id={id}>
-      <Box size='m' className={styles.box}>
+      <Box size='m' className={styles.box} ref={marginEl}>
         <div className={styles.titleWrapper}>
           <Swiper
             modules={[Navigation]}
             onSwiper={(swiper) => { swiperRefTitle.current = swiper; }}
             onSlideChange={onSlaveSlideChange}
-            navigation={false} // навигация убрана
+            navigation={false} 
             followFinger={false}
             simulateTouch={false}
             allowTouchMove={false}
@@ -180,7 +197,7 @@ export const IntroSlider = ({ id }) => {
           )}
         </div>
       </Box>
-      <div className={styles.borderLeft}></div>
+      <div className={styles.borderLeft} style={{ width: isLarge ? margin : '' }}></div>
     </div>
   )
 }

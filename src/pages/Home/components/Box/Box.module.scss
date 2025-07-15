@@ -11,6 +11,12 @@
     @include vp--1600 {
         border-radius: 50px;
 	}
+
+    @include vp--2560 {
+        max-width: 2560px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .size-m {

@@ -31,3 +31,9 @@
 		@content;
 	}
 }
+
+@mixin vp--2560 {
+	@media (min-width: 2560px) {
+		@content;
+	}
+}

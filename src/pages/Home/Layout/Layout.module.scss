@@ -20,6 +20,11 @@
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
 
+    @include vp--2560 {
+        border-bottom-right-radius: 3.125vw;
+        border-top-right-radius: 3.125vw;
+    }
+
     @include vp--1920 {
         min-height: 950px;
     }
