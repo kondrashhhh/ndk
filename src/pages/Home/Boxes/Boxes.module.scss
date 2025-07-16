@@ -10,6 +10,12 @@
     flex-wrap: wrap;
     gap: 15px;
 
+    @include vp--2560 {    
+        padding: 15px 0 25px 0;
+        max-width: 2560px;
+        margin: 0 auto;
+    }
+
     @include vp--1024 {
         padding: 30px 30px 25px;
         gap: 20px;

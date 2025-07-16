@@ -16,7 +16,7 @@
 
 .box {
     @include vp--1920 {
-        max-width: 2490px;
+        max-width: 2560px;
     }
     @include vp--680 {
         min-height: 543px;

@@ -28,26 +28,6 @@ export const IntroSlider = ({ id }) => {
 
   const isSyncingRef = useRef(false);
 
-useEffect(() => {
-  if (!marginEl.current || typeof ResizeObserver === 'undefined' || !isLarge) return;
-
-  const updateMargin = () => {
-    if (!marginEl.current) return;
-    const marginRight = window.getComputedStyle(marginEl.current).marginRight;
-    const marginRightValue = parseFloat(marginRight) || 0;
-    const totalMargin = `${marginRightValue + 70}px`;
-    setMargin(totalMargin);
-  };
-
-  const observer = new ResizeObserver(updateMargin);
-  observer.observe(marginEl.current);
-  updateMargin();
-
-  return () => {
-    observer.disconnect();
-  };
-}, [isLarge])
-
   useEffect(() => {
     if (prevButton.current && nextButton.current) {
       setNavReady(true);
@@ -197,7 +177,7 @@ useEffect(() => {
           )}
         </div>
       </Box>
-      <div className={styles.borderLeft} style={{ width: isLarge ? margin : '' }}></div>
+      <div className={styles.borderLeft}></div>
     </div>
   )
 }

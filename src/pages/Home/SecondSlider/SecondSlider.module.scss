@@ -7,6 +7,10 @@
     overflow-x: hidden;
     padding-left: 0;
 
+    @include vp--2560 {
+        padding-left: 70px;
+    }
+
     @include vp--1024 {
         text-align: center;
         padding: 0;

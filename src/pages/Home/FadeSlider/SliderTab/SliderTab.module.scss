@@ -27,6 +27,12 @@
     transition: .2s;
     cursor: pointer;
 
+    @include vp--1920 {
+        min-height: 100px;
+        max-width: none;
+        font-size: 26px;
+    }
+
     @include vp--1600 {
         flex: 1 1 50%;
     }
