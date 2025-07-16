@@ -119,6 +119,10 @@
     font-size: 18px;
     text-transform: uppercase;
 
+    @include vp--2560 {
+        font-size: 40px;
+    }
+
     @include vp--680 {
         font-size: 14px;
     }
