@@ -34,6 +34,7 @@
     padding-left: calcVW(30, 1600);
 
     @include vp--1920 {
+        padding-left: 20px !important;
         flex: 1 1 10%;
         padding: 2.125vw;
     }
