@@ -6,7 +6,7 @@ export const Footer = () => {
   const navItems = [
     {title: '© uytny, 2025', url: ''},
     {title: 'Политика конфиденциальности', url: '/'},
-    {title: 'DDq – Создаине сайта', url: ''},
+    {title: 'DDq – Создание сайта', url: ''},
   ];
 
   return (
