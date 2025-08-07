@@ -6,7 +6,7 @@ import styles from './TopSection.module.scss'
 export const TopSection = ({ id }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 680px)' });
 
-  const mobileSmallText = <>Комфорт <br /> в каждом <br /> метре</>;
+  const mobileSmallText = <>Комфорт <br /> в каждом метре</>;
   const desktopSmallText = <>Комфорт <br /> в каждом метре</>;
 
   const transition = {
