@@ -5,7 +5,7 @@ const Page = (props) => {
 	return (
 		<>
 			<Head>
-				<title>Разработка сайтов любой сложности. Создание сайтов под ключ — DDQ</title>
+				<title>НОВОСЕЛЬЕ девелопмент. Квартиры в НОВОСЕЛЬЕ</title>
 				<meta name="description" content="Разработка и создание сайтов любой сложности: лэндинги, интернет-магазины, бизнес сайты, каталоги и т.д. Индивидуальный и креативный подход, поэтапная разработка сайтов под ключ по всей России."></meta>
 				<link rel="canonical" href="https://ddq.ru/" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
