@@ -14,10 +14,11 @@ export const FadeSlider = ({ initialSlide = 0 }) => {
   const isMobile = useMediaQuery({ query: `(max-width: 680px)` });
 
   useEffect(() => {
-    if (swiperRef.current && initialSlide > 5) {
+    if (swiperRef.current && initialSlide <= 5) {
       swiperRef.current.slideTo(initialSlide - 1);
     }
-    if (isMobile && swiperRef2.current && initialSlide > 5) {
+    if (isMobile && swiperRef2.current) {
+      if (initialSlide <= 5)
       swiperRef2.current.slideTo(initialSlide - 1);
     }
     setActiveTab(initialSlide > 5 ? 0 : initialSlide - 1);
@@ -52,7 +53,7 @@ export const FadeSlider = ({ initialSlide = 0 }) => {
         allowTouchMove={isMobile}
         speed={600}
         slidesPerView={1}
-        initialSlide={initialSlide ? initialSlide - 1 : 0}
+        initialSlide={initialSlide ? initialSlide - 1 : initialSlide}
       >
         {tabsContent.map((item, index) => (
           index === 0 ? (
@@ -97,7 +98,7 @@ export const FadeSlider = ({ initialSlide = 0 }) => {
             speed={600}
             spaceBetween={5}
             slidesPerView={1.35}
-            initialSlide={initialSlide}
+            initialSlide={initialSlide ? initialSlide - 1 : initialSlide}
             breakpoints={{
               530: { slidesPerView: 2 },
               405: { slidesPerView: 1.5 }
