@@ -10,7 +10,7 @@ import styles from './FadeSlider.module.scss';
 export const FadeSlider = ({ initialSlide = 0 }) => {
   const swiperRef = useRef(null);
   const swiperRef2 = useRef(null);
-  const [activeTab, setActiveTab] = useState(initialSlide);
+  const [activeTab, setActiveTab] = useState(initialSlide ? initialSlide - 1 : 0);
   const isMobile = useMediaQuery({ query: `(max-width: 680px)` });
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export const FadeSlider = ({ initialSlide = 0 }) => {
         allowTouchMove={isMobile}
         speed={600}
         slidesPerView={1}
-        initialSlide={initialSlide}
+        initialSlide={initialSlide ? initialSlide - 1 : 0}
       >
         {tabsContent.map((item, index) => (
           index === 0 ? (
@@ -97,7 +97,7 @@ export const FadeSlider = ({ initialSlide = 0 }) => {
             speed={600}
             spaceBetween={5}
             slidesPerView={1.35}
-            initialSlide={initialSlide}
+            initialSlide={initialSlide ? initialSlide - 1 : 0}
             breakpoints={{
               530: { slidesPerView: 2 },
               405: { slidesPerView: 1.5 }
