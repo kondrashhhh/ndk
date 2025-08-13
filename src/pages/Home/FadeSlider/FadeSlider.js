@@ -20,7 +20,7 @@ export const FadeSlider = ({ initialSlide = 0 }) => {
     if (isMobile && swiperRef2.current && initialSlide > 5) {
       swiperRef2.current.slideTo(initialSlide - 1);
     }
-    setActiveTab(initialSlide > 5 ? initialSlide - 1 : 0);
+    setActiveTab(initialSlide > 5 ? 0 : initialSlide - 1);
   }, [initialSlide, isMobile]);
 
   const handleClickChange = (index) => {
