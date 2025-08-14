@@ -4,14 +4,25 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade } from 'swiper/modules';
 import { SliderTab } from './SliderTab/SliderTab';
 import { tabsContent } from './content';
-import 'swiper/css/effect-fade';  
+import 'swiper/css/effect-fade';
 import styles from './FadeSlider.module.scss';
 
-export const FadeSlider = () => { 
+export const FadeSlider = ({ initialSlide = 0 }) => {
   const swiperRef = useRef(null);
   const swiperRef2 = useRef(null);
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(initialSlide);
   const isMobile = useMediaQuery({ query: `(max-width: 680px)` });
+
+  useEffect(() => {
+    if (swiperRef.current && initialSlide <= 5) {
+      swiperRef.current.slideTo(initialSlide - 1);
+    }
+    if (isMobile && swiperRef2.current) {
+      if (initialSlide <= 5)
+      swiperRef2.current.slideTo(initialSlide - 1);
+    }
+    setActiveTab(initialSlide > 5 ? 0 : initialSlide - 1);
+  }, [initialSlide, isMobile]);
 
   const handleClickChange = (index) => {
     setActiveTab(index);
@@ -42,6 +53,7 @@ export const FadeSlider = () => {
         allowTouchMove={isMobile}
         speed={600}
         slidesPerView={1}
+        initialSlide={initialSlide ? initialSlide - 1 : initialSlide}
       >
         {tabsContent.map((item, index) => (
           index === 0 ? (
@@ -86,6 +98,7 @@ export const FadeSlider = () => {
             speed={600}
             spaceBetween={5}
             slidesPerView={1.35}
+            initialSlide={initialSlide ? initialSlide - 1 : initialSlide}
             breakpoints={{
               530: { slidesPerView: 2 },
               405: { slidesPerView: 1.5 }

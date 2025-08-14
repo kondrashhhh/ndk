@@ -1,21 +1,30 @@
 @import '@/styles/variables.scss';
 @import '@/styles/mixins.scss';
 
-.wrapper {
+.footerWrapper {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 40px;
+    flex-direction: column;
+    gap: 50px;
     padding: 30px 70px 40px;
-    overflow: visible;
 
     @include vp--1024 {
         padding: 30px 30px 40px;
     }
 
     @include vp--680 {
-        flex-direction: column;
         padding: 30px 15px 40px;
+    }
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    overflow: visible;
+
+    @include vp--680 {
+        flex-direction: column;
     }
 }
 
@@ -37,4 +46,8 @@
     font-weight: 400;
     font-size: 14px;
     margin: 0;
+}
+
+.text {
+    font-size: 11px;
 }
