@@ -1,25 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
-import Router from 'next/router';
 import Script from 'next/script';
-
 
 const YM_COUNTER_ID = 103842330 ;
 
 export const Metrika = () => {
-
-	const hit = (url) => {
-		window.ym(YM_COUNTER_ID, 'hit', url);
-	}
-
-	useEffect(() => {
-		hit(`${window.location.pathname}${window.location.search}`);
-		Router.events.on('routeChangeComplete', hit);
-
-		return () => Router.events.off('routeChangeComplete', hit);
-	}, []);
-
 	return (
 		<Script id="yandex-metrika">
 			{`
