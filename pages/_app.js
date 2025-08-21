@@ -20,7 +20,15 @@ export default function MyApp({ Component, pageProps, error }) {
 		}}>
 			<PopUpProvider>
 				<Metrika />
-				<noscript><div><img src="https://mc.yandex.ru/watch/103842330" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+				<noscript>
+					<div>
+						<img 
+							src="https://mc.yandex.ru/watch/103842330" 
+							style={{ position: 'absolute', left: '-9999px' }} 
+							alt="" 
+						/>
+					</div>
+				</noscript>
                 <Component {...pageProps} />
 			</PopUpProvider>
 		</BrowserContext.Provider>
